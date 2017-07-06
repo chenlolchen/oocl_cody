@@ -1,11 +1,49 @@
 package com.oocl;
 
-import java.util.Random;
+import com.oocl.util.HelpUtil;
 
-public class DoubleLink {
-    private Node head;
-    private Node tail;
+import java.util.Scanner;
+
+public class DoubleLink<T> {
+    private Node<T> head;
+    private Node<T> tail;
     private int size;
+
+    class Node<T extends Object> {
+        private Node<T> prev;
+        private Node<T> next;
+        private T data;
+
+        public Node(T t, Node prev, Node next) {
+            this.data = t;
+            this.prev = prev;
+            this.next = next;
+        }
+
+        public Node<T> getPrev() {
+            return prev;
+        }
+
+        public void setPrev(Node<T> prev) {
+            this.prev = prev;
+        }
+
+        public Node<T> getNext() {
+            return next;
+        }
+
+        public void setNext(Node<T> next) {
+            this.next = next;
+        }
+
+        public T getData() {
+            return data;
+        }
+
+        public void setData(T data) {
+            this.data = data;
+        }
+    }
 
     public DoubleLink() {
         size = 0;
@@ -19,27 +57,27 @@ public class DoubleLink {
         return size == 0;
     }
 
-    public void add(int index, int element) {
+    public void add(int index, T data) {
         if (index < 0 || index > size)
             throw new IndexOutOfBoundsException();
         if (index == 0)
-            addFirst(element);
+            addFirst(data);
         else if (index == size)
-            addLast(element);
+            addLast(data);
         else {
             Node temp = head;
             for (int i = 0; i < index; i++) {
                 temp = temp.next;
             }
-            Node insert = new Node(element, temp.prev, temp);
+            Node insert = new Node<T>(data, temp.prev, temp);
             temp.prev.next = insert;
             temp.prev = insert;
             size++;
         }
     }
 
-    public void addFirst(int element) {
-        Node tmp = new Node(element, null, head);
+    public void addFirst(T element) {
+        Node tmp = new Node<T>(element, null, head);
         if (head != null) {
             head.prev = tmp;
         }
@@ -50,8 +88,8 @@ public class DoubleLink {
         size++;
     }
 
-    public void addLast(int element) {
-        Node tmp = new Node(element, tail, null);
+    public void addLast(T element) {
+        Node tmp = new Node<T>(element, tail, null);
         if (head == null)
             head = tmp;
         if (tail != null)
@@ -60,74 +98,55 @@ public class DoubleLink {
         size++;
     }
 
-    public void set(int index, int element){
-        if(index<0 || index>=size)
+    public void iterateForward() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.println(temp.getData().toString());
+            temp = temp.next;
+
+        }
+    }
+
+    public void sortById() {
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - 1 - i; j++) {
+                Student s1 = (Student) get(j);
+                Student s2 = (Student) get(j + 1);
+                if (s1.getId() > s2.getId()) {
+                    set(j, (T) s2);
+                    set(j + 1, (T) s1);
+                }
+            }
+        }
+    }
+
+    public void sortByName() {
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - 1 - i; j++) {
+                Student s1 = (Student) get(j);
+                Student s2 = (Student) get(j + 1);
+                if ((s2.getName()).compareTo(s1.getName()) > 0) {
+                    set(j, (T) s2);
+                    set(j + 1, (T) s1);
+                }
+            }
+        }
+    }
+
+    public void set(int index, T element) {
+        if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException();
-        else{
+        else {
             Node temp = head;
-            for(int i=0; i<index; i++){
+            for (int i = 0; i < index; i++) {
                 temp = temp.next;
             }
-            temp.element = element;
+            temp.data = element;
         }
     }
 
-    public String iterateForward() {
-        Node temp = head;
-        StringBuilder s = new StringBuilder();
-        while (temp != null) {
-            s.append(temp.element + " ");
-            temp = temp.next;
-        }
-        return s.toString();
-    }
-
-    public void sort1() {
-        for (int i = 0; i < size - 1; i++) {
-            for (int j = 0; j < size - 1 - i; j++) {
-                if (get(j) > get(j + 1)) {
-                    int temp = get(j);
-                    remove(j);
-                    add(j+1, temp);
-                }
-            }
-        }
-    }
-
-    public void sort() {
-        for (int i = 0; i < size - 1; i++) {
-            for (int j = 0; j < size - 1 - i; j++) {
-                if (get(j) > get(j + 1)) {
-                    int temp = get(j);
-                    int temp2 = get(j + 1);
-                    set(j, temp2);
-                    set(j + 1, temp);
-                }
-            }
-        }
-    }
-
-    public int binarySearch(int target){
-        int left = 0;
-        int right = size - 1;
-
-        while (left <= right){
-            int mid = (right + left) / 2;
-            if(target == get(mid)){
-                return get(mid);
-            }else if(target > get(mid)){
-                left = mid + 1;
-            }else if (target < get(mid)){
-                right = mid - 1;
-            }else {
-                return -1;
-            }
-        }
-        return -1;
-    }
-
-    public int remove(int index) {
-        int element = 0;
+    public T remove(int index) {
+        T element = null;
         if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException();
         if (index == 0)
@@ -135,11 +154,11 @@ public class DoubleLink {
         else if (index == size - 1)
             removeLast();
         else {
-            Node temp = head;
+            Node<T> temp = head;
             for (int i = 0; i < index; i++) {
                 temp = temp.next;
             }
-            element = temp.element;
+            element = temp.data;
             temp.next.prev = temp.prev;
             temp.prev.next = temp.next;
             temp.next = null;
@@ -149,10 +168,10 @@ public class DoubleLink {
         return element;
     }
 
-    public int removeFirst() {
+    public T removeFirst() {
         if (head == null)
             throw new NullPointerException();
-        int element = head.element;
+        T element = head.data;
         head = head.next;
         if (head == null)
             tail = null;
@@ -162,10 +181,10 @@ public class DoubleLink {
         return element;
     }
 
-    public int removeLast() {
+    public T removeLast() {
         if (tail == null)
             throw new NullPointerException();
-        int element = tail.element;
+        T element = tail.data;
         tail = tail.prev;
         if (tail == null)
             head = null;
@@ -175,15 +194,15 @@ public class DoubleLink {
         return element;
     }
 
-    public int get(int index) {
+    public T get(int index) {
         if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException();
         else {
-            Node temp = head;
+            Node<T> temp = head;
             for (int i = 0; i < index; i++) {
                 temp = temp.next;
             }
-            return temp.element;
+            return temp.data;
         }
     }
 
@@ -200,34 +219,32 @@ public class DoubleLink {
     }
 
     public static void main(String[] args) {
-        DoubleLink dlink = new DoubleLink();
+        DoubleLink doubleLink = new DoubleLink();
+        HelpUtil.showHelp();
+        doubleLink.add(0, new Student(1, "小明", "男", "1994-06-03", "珠海", "13631232200"));
+        doubleLink.add(1, new Student(2, "小红", "女", "1995-01-02", "珠海", "13631232231"));
+        doubleLink.add(2, new Student(3, "小兰", "女", "1994-04-03", "珠海", "13631232231"));
+        doubleLink.add(3, new Student(4, "小张", "男", "1994-06-08", "珠海", "13631232231"));
+        doubleLink.add(4, new Student(5, "阿甘", "男", "1994-12-13", "珠海", "13631232231"));
+        doubleLink.add(5, new Student(6, "小白", "女", "1994-10-24", "珠海", "13631232231"));
+        doubleLink.add(6, new Student(7, "张三", "男", "1994-06-14", "珠海", "13631232231"));
+        doubleLink.add(7, new Student(8, "李四", "男", "1994-08-02", "珠海", "13631232231"));
+        doubleLink.add(8, new Student(9, "王五", "男", "1994-06-26", "珠海", "13631232231"));
+        doubleLink.add(9, new Student(10, "老王", "男", "1994-06-07", "珠海", "13631232231"));
+//        Student student = new Student("A name:chen,sex:男,birthDay:1994-01-01,call:13632353697");
+//        Student student2 = new Student("name:chen22,sex:男,birthDay:1994-01-01,call:555555555");
+//        System.out.println(student);
+//        System.out.println(student2);
 
-        Random random = new Random();
-        for (int i = 0; i < 20; i++) {
-            dlink.add(i, random.nextInt(500));
+        Scanner scanner = new Scanner(System.in);
+        String input;
+        HelpUtil helpUtil = new HelpUtil(doubleLink);
+        input = scanner.nextLine();
+        while (!(input).equals("Q")) {
+            helpUtil.handleInput(input);
+            input = scanner.nextLine();
         }
-        dlink.addFirst(1111);
-        dlink.addFirst(66);
+        System.out.println("=============== exit ================");
 
-        System.out.println("刪除前：");
-        System.out.println(dlink.iterateForward());
-        dlink.remove(0);
-        System.out.println("刪除后：");
-        System.out.println(dlink.iterateForward());
-
-
-        System.out.println("排序前：");
-        System.out.println(dlink.iterateForward());
-        dlink.sort();
-        System.out.println("排序后：");
-        System.out.println(dlink.iterateForward());
-
-        int number = 1111;
-        System.out.println("查找元素:" + number);
-        if(dlink.binarySearch(number) > 0){
-            System.out.println("元素存在！");
-        }else {
-            System.out.println("元素不存在！");
-        }
     }
 }
