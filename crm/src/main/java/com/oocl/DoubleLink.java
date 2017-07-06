@@ -1,6 +1,8 @@
 package com.oocl;
 
-import com.oocl.util.HelpUtil;
+import com.oocl.exception.FormatException;
+import com.oocl.util.ConsoleUtil;
+import com.oocl.util.DataUtil;
 
 import java.util.Scanner;
 
@@ -98,12 +100,49 @@ public class DoubleLink<T> {
         size++;
     }
 
-    public void iterateForward() {
+    public void iterateAll() {
         Node temp = head;
         while (temp != null) {
             System.out.println(temp.getData().toString());
             temp = temp.next;
 
+        }
+    }
+
+    public void iterateByKey(String key, String value) {
+        Node<T> temp = head;
+        for (int i = 0; i < size; i++) {
+            Student student = (Student) temp.getData();
+            switch (key) {
+                case "name":
+                    if (student.getName().equals(value)) {
+                        System.out.println(temp.getData().toString());
+                    }
+                    break;
+                case "sex":
+                    if (student.getSex().equals(value)) {
+                        System.out.println(temp.getData().toString());
+                    }
+                    break;
+                case "birthDay":
+                    if (student.getBirthDay().equals(value)) {
+                        System.out.println(temp.getData().toString());
+                    }
+                    break;
+                case "address":
+                    if (student.getAddress().equals(value)) {
+                        System.out.println(temp.getData().toString());
+                    }
+                    break;
+                case "call":
+                    if (student.getCall().equals(value)) {
+                        System.out.println(temp.getData().toString());
+                    }
+                    break;
+                default:
+                    throw new FormatException();
+            }
+            temp = temp.next;
         }
     }
 
@@ -206,21 +245,56 @@ public class DoubleLink<T> {
         }
     }
 
-    public Node getNode(int index) {
-        if (index < 0 || index >= size)
-            throw new IndexOutOfBoundsException();
-        else {
-            Node temp = head;
-            for (int i = 0; i < index; i++) {
-                temp = temp.next;
+    public T getDataById(int id){
+        Node<T> temp = head;
+        for (int i = 0; i < size; i++) {
+            Student stu = (Student) temp.getData();
+            if (stu.getId() == id) {
+                return (T) stu;
             }
-            return temp;
+            temp = temp.next;
         }
+        return null;
+    }
+
+    public boolean exitDataID(int deleteID) {
+        boolean result = false;
+        int index = 0;
+
+        Node<T> temp = head;
+        for (int i = 0; i < size; i++) {
+            Student stu = (Student) temp.getData();
+            if (stu.getId() == deleteID) {
+                result = true;
+                remove(index);
+                break;
+            }
+            index++;
+            temp = temp.next;
+        }
+        return result;
+
+    }
+
+    public boolean updateByDataID(int id, T data) {
+        boolean result = false;
+        int index = 0;
+        Node<T> temp = head;
+        for (int i = 0; i < size; i++) {
+            Student stu = (Student) temp.getData();
+            if (stu.getId() == id) {
+                result = true;
+                set(index, data);
+                break;
+            }
+            index++;
+            temp = temp.next;
+        }
+        return result;
     }
 
     public static void main(String[] args) {
         DoubleLink doubleLink = new DoubleLink();
-        HelpUtil.showHelp();
         doubleLink.add(0, new Student(1, "小明", "男", "1994-06-03", "珠海", "13631232200"));
         doubleLink.add(1, new Student(2, "小红", "女", "1995-01-02", "珠海", "13631232231"));
         doubleLink.add(2, new Student(3, "小兰", "女", "1994-04-03", "珠海", "13631232231"));
@@ -231,17 +305,16 @@ public class DoubleLink<T> {
         doubleLink.add(7, new Student(8, "李四", "男", "1994-08-02", "珠海", "13631232231"));
         doubleLink.add(8, new Student(9, "王五", "男", "1994-06-26", "珠海", "13631232231"));
         doubleLink.add(9, new Student(10, "老王", "男", "1994-06-07", "珠海", "13631232231"));
-//        Student student = new Student("A name:chen,sex:男,birthDay:1994-01-01,call:13632353697");
-//        Student student2 = new Student("name:chen22,sex:男,birthDay:1994-01-01,call:555555555");
-//        System.out.println(student);
-//        System.out.println(student2);
+
+        DataUtil dataUtil = new DataUtil(doubleLink);
+        ConsoleUtil consoleUtil = new ConsoleUtil(dataUtil);
+        ConsoleUtil.showHelp();
 
         Scanner scanner = new Scanner(System.in);
         String input;
-        HelpUtil helpUtil = new HelpUtil(doubleLink);
         input = scanner.nextLine();
         while (!(input).equals("Q")) {
-            helpUtil.handleInput(input);
+            consoleUtil.handleInput(input);
             input = scanner.nextLine();
         }
         System.out.println("=============== exit ================");
