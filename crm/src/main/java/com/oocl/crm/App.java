@@ -11,7 +11,7 @@ public class App {
 
         DataUtil dataUtil = new DataUtil(doubleLink);
         ConsoleUtil consoleUtil = new ConsoleUtil(dataUtil);
-        consoleUtil.showHelp();
+        consoleUtil.showHelp("H");
         consoleUtil.start();
     }
 }

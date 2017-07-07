@@ -115,6 +115,11 @@ public class DoubleLink<T> extends DoubleLinkBase<T> implements MyDoubleLinkInte
         for (int i = 0; i < size; i++) {
             Student student = (Student) temp.getData();
             switch (key) {
+                case "id":
+                    if (student.getId() == (Integer.parseInt(value))) {
+                        System.out.println(temp.getData().toString());
+                    }
+                    break;
                 case "name":
                     if (student.getName().equals(value)) {
                         System.out.println(temp.getData().toString());

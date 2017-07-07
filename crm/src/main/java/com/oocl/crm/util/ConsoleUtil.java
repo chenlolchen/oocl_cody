@@ -11,6 +11,7 @@ public class ConsoleUtil {
     private static final String ORDER = "O";
     private static final String SHOW = "L";
     private static final String HELP = "H";
+    private static final String EXIT = "Q";
 
     private DataUtil dataUtil;
 
@@ -29,15 +30,41 @@ public class ConsoleUtil {
         System.out.println("=============== exit ================");
     }
 
-    public void showHelp() {
+    public void showHelp(String inputStr) {
         System.out.println("===========================================================");
-        System.out.println("== L. 查看数据（参数：id,name,sex,birthday,address,call）  ==");
-        System.out.println("== A. 添加数据（参数：name,sex,birthday,address,call）  =====");
-        System.out.println("== D. 删除数据（参数：ID）                                 ==");
-        System.out.println("== U. 修改数据（参数：id,name,sex,birthday,address,call）  ==");
-        System.out.println("== O. 对数据进行排序（参数：id/name）                       ==");
-        System.out.println("== H. 查看帮助                                            ==");
-        System.out.println("== Q. 退出                                                ==");
+        if(inputStr.length() >= 2){
+            switch (String.valueOf(inputStr.charAt(2))) {
+                case SHOW:
+                    System.out.println("== L. 查看数据（参数：id,name,sex,birthday,address,call）  ==");
+                    break;
+                case ADD:
+                    System.out.println("== A. 添加数据（参数：name,sex,birthday,address,call）  =====");
+                    break;
+                case UPDATE:
+                    System.out.println("== U. 修改数据（参数：id,name,sex,birthday,address,call）  ==");
+                    break;
+                case DELETE:
+                    System.out.println("== D. 删除数据（参数：ID）                                 ==");
+                    break;
+                case ORDER:
+                    System.out.println("== O. 对数据进行排序（参数：id/name）                       ==");
+                    break;
+                case HELP:
+                    System.out.println("== H. 查看帮助                                            ==");
+                    break;
+                case EXIT:
+                    System.out.println("== Q. 退出                                                ==");
+                    break;
+            }
+        }else {
+            System.out.println("== L. 查看数据（参数：id,name,sex,birthday,address,call）  ==");
+            System.out.println("== A. 添加数据（参数：name,sex,birthday,address,call）  =====");
+            System.out.println("== D. 删除数据（参数：ID）                                 ==");
+            System.out.println("== U. 修改数据（参数：id,name,sex,birthday,address,call）  ==");
+            System.out.println("== O. 对数据进行排序（参数：id/name）                       ==");
+            System.out.println("== H. 查看帮助                                            ==");
+            System.out.println("== Q. 退出                                                ==");
+        }
         System.out.println("============================================================");
     }
 
@@ -62,7 +89,7 @@ public class ConsoleUtil {
                     dataUtil.sortData();
                     break;
                 case HELP:
-                    showHelp();
+                    showHelp(inputStr);
                     break;
                 default:
                     System.out.println("usage H for Looking Help...");
