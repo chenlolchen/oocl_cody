@@ -1,15 +1,10 @@
-package com.oocl.util;
+package com.oocl.crm.util;
 
-import com.oocl.DoubleLink;
-import com.oocl.Student;
+import com.oocl.crm.bean.DoubleLink;
+import com.oocl.crm.bean.Student;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-/**
- * Created by chen on 2017/7/6.
- */
 public class ConsoleUtilTest {
     public static ConsoleUtil consoleUtil;
     public static DataUtil dataUtil;
@@ -41,6 +36,7 @@ public class ConsoleUtilTest {
     public void handleInput() throws Exception {
         consoleUtil.handleInput("L");
         consoleUtil.handleInput("L name:小红");
+        consoleUtil.handleInput("LLname:小红");
         consoleUtil.handleInput("O name");
         consoleUtil.handleInput("O id");
         consoleUtil.handleInput("D 3");
@@ -49,6 +45,7 @@ public class ConsoleUtilTest {
         consoleUtil.handleInput("A name:kkk");
         consoleUtil.handleInput("A name:ooo,sex:男");
         consoleUtil.handleInput("U 2 name:edit");
+        consoleUtil.handleInput("U 200 name:edit");
         consoleUtil.handleInput("U 3 name:test,sex:男生");
         consoleUtil.handleInput("H");
     }

@@ -1,15 +1,16 @@
-package com.oocl;
+package com.oocl.crm.bean;
 
-import com.oocl.exception.FormatException;
-import com.oocl.util.ConsoleUtil;
-import com.oocl.util.DataUtil;
+import com.oocl.crm.exception.FormatException;
+import com.oocl.crm.util.ConsoleUtil;
+import com.oocl.crm.util.DataUtil;
 
 import java.util.Scanner;
 
-public class DoubleLink<T> {
+public class DoubleLink<T> implements DoubleLinkInterface<T> {
     private Node<T> head;
     private Node<T> tail;
     private int size;
+
 
     class Node<T extends Object> {
         private Node<T> prev;
@@ -59,6 +60,7 @@ public class DoubleLink<T> {
         return size == 0;
     }
 
+    @Override
     public void add(int index, T data) {
         if (index < 0 || index > size)
             throw new IndexOutOfBoundsException();
@@ -78,6 +80,7 @@ public class DoubleLink<T> {
         }
     }
 
+    @Override
     public void addFirst(T element) {
         Node tmp = new Node<T>(element, null, head);
         if (head != null) {
@@ -90,6 +93,7 @@ public class DoubleLink<T> {
         size++;
     }
 
+    @Override
     public void addLast(T element) {
         Node tmp = new Node<T>(element, tail, null);
         if (head == null)
@@ -100,12 +104,91 @@ public class DoubleLink<T> {
         size++;
     }
 
+    @Override
     public void iterateAll() {
         Node temp = head;
         while (temp != null) {
             System.out.println(temp.getData().toString());
             temp = temp.next;
 
+        }
+    }
+
+    @Override
+    public void set(int index, T element) {
+        if (index < 0 || index >= size)
+            throw new IndexOutOfBoundsException();
+        else {
+            Node temp = head;
+            for (int i = 0; i < index; i++) {
+                temp = temp.next;
+            }
+            temp.data = element;
+        }
+    }
+
+    @Override
+    public T remove(int index) {
+        T element = null;
+        if (index < 0 || index >= size)
+            throw new IndexOutOfBoundsException();
+        if (index == 0)
+            removeFirst();
+        else if (index == size - 1)
+            removeLast();
+        else {
+            Node<T> temp = head;
+            for (int i = 0; i < index; i++) {
+                temp = temp.next;
+            }
+            element = temp.data;
+            temp.next.prev = temp.prev;
+            temp.prev.next = temp.next;
+            temp.next = null;
+            temp.prev = null;
+            size--;
+        }
+        return element;
+    }
+
+    @Override
+    public T removeFirst() {
+        if (head == null)
+            throw new NullPointerException();
+        T element = head.data;
+        head = head.next;
+        if (head == null)
+            tail = null;
+        else
+            head.prev = null;
+        size--;
+        return element;
+    }
+
+    @Override
+    public T removeLast() {
+        if (tail == null)
+            throw new NullPointerException();
+        T element = tail.data;
+        tail = tail.prev;
+        if (tail == null)
+            head = null;
+        else
+            tail.next = null;
+        size--;
+        return element;
+    }
+
+    @Override
+    public T get(int index) {
+        if (index < 0 || index >= size)
+            throw new IndexOutOfBoundsException();
+        else {
+            Node<T> temp = head;
+            for (int i = 0; i < index; i++) {
+                temp = temp.next;
+            }
+            return temp.data;
         }
     }
 
@@ -146,104 +229,78 @@ public class DoubleLink<T> {
         }
     }
 
-    public void sortById() {
-        for (int i = 0; i < size - 1; i++) {
-            for (int j = 0; j < size - 1 - i; j++) {
-                Student s1 = (Student) get(j);
-                Student s2 = (Student) get(j + 1);
-                if (s1.getId() > s2.getId()) {
-                    set(j, (T) s2);
-                    set(j + 1, (T) s1);
-                }
-            }
-        }
-    }
-
     public void sortByName() {
+        int[] outPutQueue = new int[size];
+        for(int m = 0; m < size; m++){
+            outPutQueue[m] = m;
+        }
         for (int i = 0; i < size - 1; i++) {
             for (int j = 0; j < size - 1 - i; j++) {
-                Student s1 = (Student) get(j);
-                Student s2 = (Student) get(j + 1);
+                Student s1 = (Student) get(outPutQueue[j]);
+                Student s2 = (Student) get(outPutQueue[j + 1]);
                 if ((s2.getName()).compareTo(s1.getName()) > 0) {
-                    set(j, (T) s2);
-                    set(j + 1, (T) s1);
+                    int temp = outPutQueue[j + 1];
+                    outPutQueue[j + 1] = outPutQueue[j];
+                    outPutQueue[j] = temp;
                 }
             }
         }
-    }
 
-    public void set(int index, T element) {
-        if (index < 0 || index >= size)
-            throw new IndexOutOfBoundsException();
-        else {
-            Node temp = head;
-            for (int i = 0; i < index; i++) {
-                temp = temp.next;
-            }
-            temp.data = element;
+        for(int n = 0; n < size; n++){
+            System.out.println(get(outPutQueue[n]));
         }
     }
 
-    public T remove(int index) {
-        T element = null;
-        if (index < 0 || index >= size)
-            throw new IndexOutOfBoundsException();
-        if (index == 0)
-            removeFirst();
-        else if (index == size - 1)
-            removeLast();
-        else {
-            Node<T> temp = head;
-            for (int i = 0; i < index; i++) {
-                temp = temp.next;
-            }
-            element = temp.data;
-            temp.next.prev = temp.prev;
-            temp.prev.next = temp.next;
-            temp.next = null;
-            temp.prev = null;
-            size--;
+    public void sortById() {
+        int[] outPutQueue = new int[size];
+        for(int m = 0; m < size; m++){
+            outPutQueue[m] = m;
         }
-        return element;
-    }
 
-    public T removeFirst() {
-        if (head == null)
-            throw new NullPointerException();
-        T element = head.data;
-        head = head.next;
-        if (head == null)
-            tail = null;
-        else
-            head.prev = null;
-        size--;
-        return element;
-    }
-
-    public T removeLast() {
-        if (tail == null)
-            throw new NullPointerException();
-        T element = tail.data;
-        tail = tail.prev;
-        if (tail == null)
-            head = null;
-        else
-            tail.next = null;
-        size--;
-        return element;
-    }
-
-    public T get(int index) {
-        if (index < 0 || index >= size)
-            throw new IndexOutOfBoundsException();
-        else {
-            Node<T> temp = head;
-            for (int i = 0; i < index; i++) {
-                temp = temp.next;
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - 1 - i; j++) {
+                Student s1 = (Student) get(outPutQueue[j]);
+                Student s2 = (Student) get(outPutQueue[j + 1]);
+                if (s1.getId() > s2.getId()) {
+                    int temp = outPutQueue[j + 1];
+                    outPutQueue[j + 1] = outPutQueue[j];
+                    outPutQueue[j] = temp;
+                }
             }
-            return temp.data;
+        }
+
+        for(int n = 0; n < size; n++){
+            System.out.println(get(outPutQueue[n]));
         }
     }
+
+//    public void sortById() {
+//        for (int i = 0; i < size - 1; i++) {
+//            for (int j = 0; j < size - 1 - i; j++) {
+//                Student s1 = (Student) get(j);
+//                Student s2 = (Student) get(j + 1);
+//                if (s1.getId() > s2.getId()) {
+//                    set(j, (T) s2);
+//                    set(j + 1, (T) s1);
+//                }
+//            }
+//        }
+//        iterateAll();
+//    }
+
+//    public void sortByName() {
+//        for (int i = 0; i < size - 1; i++) {
+//            for (int j = 0; j < size - 1 - i; j++) {
+//                Student s1 = (Student) get(j);
+//                Student s2 = (Student) get(j + 1);
+//                if ((s2.getName()).compareTo(s1.getName()) > 0) {
+//                    set(j, (T) s2);
+//                    set(j + 1, (T) s1);
+//                }
+//            }
+//        }
+//        iterateAll();
+//    }
 
     public T getDataById(int id){
         Node<T> temp = head;

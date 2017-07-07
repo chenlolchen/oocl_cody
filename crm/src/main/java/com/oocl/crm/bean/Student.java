@@ -1,6 +1,4 @@
-package com.oocl;
-
-import java.util.Map;
+package com.oocl.crm.bean;
 
 public class Student extends Object {
     private int id;

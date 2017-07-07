@@ -1,8 +1,8 @@
-package com.oocl.util;
+package com.oocl.crm.util;
 
-import com.oocl.DoubleLink;
-import com.oocl.Student;
-import com.oocl.exception.FormatException;
+import com.oocl.crm.bean.DoubleLink;
+import com.oocl.crm.bean.Student;
+import com.oocl.crm.exception.FormatException;
 
 /**
  * Created by chen on 2017/7/6.
@@ -17,23 +17,12 @@ public class DataUtil {
         this.idCounter = doubleLink.size();
     }
 
-    public String fetchOperationType(String inputStr) {
-        inputParamsString = parseInputString(inputStr);
-        return String.valueOf(inputStr.charAt(0));
+    public String getInputParamsString() {
+        return inputParamsString;
     }
 
-    private String parseInputString(String inputStr) {
-        if (inputStr.length() > 2) {
-            if (inputStr.charAt(1) == ' ') {
-                return inputStr.substring(2, inputStr.length());
-            } else {
-                throw new FormatException();
-            }
-        } else if (inputStr.length() == 1 && inputStr.equals("L")) {
-            return inputStr;
-        } else {
-            return null;
-        }
+    public void setInputParamsString(String inputParamsString) {
+        this.inputParamsString = inputParamsString;
     }
 
     public void showData() {
@@ -77,17 +66,20 @@ public class DataUtil {
         int editID = Integer.parseInt(updateParamsSplit[0]);
         String[] paramsStringList = updateParamsSplit[1].trim().split(",");
         Student student = (Student) doubleLink.getDataById(editID);
-        setParamsToStudent(student, paramsStringList);
-        if (editID > 0 && editID <= idCounter) {
-            if (doubleLink.updateByDataID(editID, student)) {
-                System.out.println("update success");
+        if(student != null){
+            setParamsToStudent(student, paramsStringList);
+            if (editID > 0 && editID <= idCounter) {
+                if (doubleLink.updateByDataID(editID, student)) {
+                    System.out.println("update success");
+                } else {
+                    System.out.println("your input id is not exit");
+                }
             } else {
-                System.out.println("your input id is not exit");
+                System.out.println("please check your input id between 0 - " + idCounter);
             }
-        } else {
-            System.out.println("please check your input id between 0 - " + idCounter);
+        }else {
+            System.out.println("can not found student id");
         }
-
     }
 
     public void sortData() {
