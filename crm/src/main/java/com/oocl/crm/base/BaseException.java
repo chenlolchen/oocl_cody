@@ -1,4 +1,4 @@
-package com.oocl.crm.exception;
+package com.oocl.crm.base;
 
 /**
  * Created by CHENCO7 on 7/7/2017.

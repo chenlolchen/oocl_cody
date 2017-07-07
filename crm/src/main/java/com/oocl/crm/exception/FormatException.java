@@ -1,8 +1,7 @@
 package com.oocl.crm.exception;
 
-/**
- * Created by chen on 2017/7/6.
- */
+import com.oocl.crm.base.BaseException;
+
 public class FormatException extends BaseException {
     public FormatException() {
         super();

@@ -4,9 +4,6 @@ import com.oocl.crm.bean.DoubleLink;
 import com.oocl.crm.bean.Student;
 import com.oocl.crm.exception.FormatException;
 
-/**
- * Created by chen on 2017/7/6.
- */
 public class DataUtil {
     private DoubleLink doubleLink;
     private int idCounter;
@@ -15,10 +12,6 @@ public class DataUtil {
     public DataUtil(DoubleLink doubleLink) {
         this.doubleLink = doubleLink;
         this.idCounter = doubleLink.size();
-    }
-
-    public String getInputParamsString() {
-        return inputParamsString;
     }
 
     public void setInputParamsString(String inputParamsString) {
