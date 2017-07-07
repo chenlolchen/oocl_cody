@@ -25,7 +25,7 @@ public class DoubleLinkTest {
 
     @Test
     public void testSize() throws Exception {
-        Assert.assertEquals(doubleLink.size(),10);
+        Assert.assertEquals(doubleLink.size(),12);
     }
 
     @Test
@@ -35,21 +35,19 @@ public class DoubleLinkTest {
 
     @Test
     public void testAdd() throws Exception {
-        doubleLink.add(1, new Student(11, "老王", "男", "1994-06-07", "珠海", "13631232231"));
-        Assert.assertEquals(doubleLink.size(),11);
+        doubleLink.add(1, new Student(11, "老王1", "男", "1994-06-07", "珠海", "13631232231"));
+        Assert.assertEquals(doubleLink.size(),12);
     }
 
     @Test
     public void testAddFirst() throws Exception {
-        doubleLink.addFirst(new Student(11, "老王", "男", "1994-06-07", "珠海", "13631232231"));
+        doubleLink.addFirst(new Student(11, "老王2", "男", "1994-06-07", "珠海", "13631232231"));
         Assert.assertEquals(doubleLink.size(),11);
     }
 
     @Test
     public void testAddLast() throws Exception {
-        doubleLink.addLast(new Student(11, "老王", "男", "1994-06-07", "珠海", "13631232231"));
-        Assert.assertEquals(doubleLink.size(),11);
-        doubleLink.addLast(new Student(11, "老王", "男", "1994-06-07", "珠海", "13631232231"));
+        doubleLink.addLast(new Student(11, "老王3", "男", "1994-06-07", "珠海", "13631232231"));
         Assert.assertEquals(doubleLink.size(),11);
     }
 
@@ -83,9 +81,9 @@ public class DoubleLinkTest {
 
     @Test
     public void testRemoveLast() throws Exception {
-        Student student = (Student) doubleLink.get(0);
+        Student student = (Student) doubleLink.get(doubleLink.size() - 1);
         doubleLink.removeLast();
-        Student student2 = (Student) doubleLink.get(0);
+        Student student2 = (Student) doubleLink.get(doubleLink.size() - 1);
         Assert.assertNotEquals(student.getName(),student2.getName());
     }
 
