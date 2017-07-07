@@ -14,6 +14,10 @@ public class DataUtil {
         this.idCounter = doubleLink.size();
     }
 
+    public String getInputParamsString() {
+        return inputParamsString;
+    }
+
     public void setInputParamsString(String inputParamsString) {
         this.inputParamsString = inputParamsString;
     }

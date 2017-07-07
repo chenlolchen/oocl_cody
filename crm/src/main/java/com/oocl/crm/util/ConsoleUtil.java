@@ -2,6 +2,8 @@ package com.oocl.crm.util;
 
 import com.oocl.crm.exception.FormatException;
 
+import java.util.Scanner;
+
 public class ConsoleUtil {
     private static final String ADD = "A";
     private static final String UPDATE = "U";
@@ -16,7 +18,18 @@ public class ConsoleUtil {
         this.dataUtil = dataUtil;
     }
 
-    public static void showHelp() {
+    public void start() {
+        Scanner scanner = new Scanner(System.in);
+        String input;
+        input = scanner.nextLine();
+        while (!(input).equals("Q")) {
+            handleInput(input);
+            input = scanner.nextLine();
+        }
+        System.out.println("=============== exit ================");
+    }
+
+    public void showHelp() {
         System.out.println("===========================================================");
         System.out.println("== L. 查看数据（参数：id,name,sex,birthday,address,call）  ==");
         System.out.println("== A. 添加数据（参数：name,sex,birthday,address,call）  =====");

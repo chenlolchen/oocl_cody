@@ -29,7 +29,7 @@ public class ConsoleUtilTest {
 
     @Test
     public void showHelp() throws Exception {
-        ConsoleUtil.showHelp();
+        consoleUtil.showHelp();
     }
 
     @Test

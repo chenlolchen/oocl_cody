@@ -99,7 +99,6 @@ public class DoubleLinkBase<T> {
         while (temp != null) {
             System.out.println(temp.getData().toString());
             temp = temp.next;
-
         }
     }
 
