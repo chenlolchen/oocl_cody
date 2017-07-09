@@ -1,17 +1,11 @@
 package com.oocl.crm;
 
-import com.oocl.crm.bean.DoubleLink;
-import com.oocl.crm.util.ConsoleUtil;
-import com.oocl.crm.util.DataUtil;
+import com.oocl.crm.controller.ConsoleController;
+import com.oocl.crm.controller.impl.ConsoleControllerImpl;
 
 public class App {
     public static void main(String[] args) {
-        DoubleLink doubleLink = new DoubleLink();
-        doubleLink.initData();
-
-        DataUtil dataUtil = new DataUtil(doubleLink);
-        ConsoleUtil consoleUtil = new ConsoleUtil(dataUtil);
-        consoleUtil.showHelp("H");
-        consoleUtil.start();
+        ConsoleController consoleController = new ConsoleControllerImpl();
+        consoleController.start();
     }
 }

@@ -1,10 +1,17 @@
-package com.oocl.crm.util;
+package com.oocl.crm.controller.impl;
 
+import com.oocl.crm.controller.ConsoleController;
 import com.oocl.crm.exception.FormatException;
+import com.oocl.crm.parser.CmdParser;
+import com.oocl.crm.parser.impl.CmdParserImpl;
+import com.oocl.crm.util.FormatPrinter;
 
 import java.util.Scanner;
 
-public class ConsoleUtil {
+/**
+ * Created by chen on 2017/7/9.
+ */
+public class ConsoleControllerImpl implements ConsoleController {
     private static final String ADD = "A";
     private static final String UPDATE = "U";
     private static final String DELETE = "D";
@@ -12,13 +19,14 @@ public class ConsoleUtil {
     private static final String SHOW = "L";
     private static final String HELP = "H";
     private static final String EXIT = "Q";
+    private CmdParser cmdParser;
 
-    private DataUtil dataUtil;
-
-    public ConsoleUtil(DataUtil dataUtil) {
-        this.dataUtil = dataUtil;
+    public ConsoleControllerImpl(){
+        cmdParser = new CmdParserImpl();
+        showHelp("H");
     }
 
+    @Override
     public void start() {
         Scanner scanner = new Scanner(System.in);
         String input;
@@ -30,6 +38,7 @@ public class ConsoleUtil {
         System.out.println("=============== exit ================");
     }
 
+    @Override
     public void showHelp(String inputStr) {
         System.out.println("===========================================================");
         if(inputStr.length() >= 2){
@@ -68,25 +77,27 @@ public class ConsoleUtil {
         System.out.println("============================================================");
     }
 
+    @Override
     public void handleInput(String inputStr) {
         try {
-            String type = fetchOperationType(inputStr);
+            String type = FormatPrinter.fetchOperationType(inputStr);
+            String paramsString = FormatPrinter.parseInputString(inputStr);
 
             switch (type) {
                 case SHOW:
-                    dataUtil.showData();
+                    cmdParser.showData(paramsString);
                     break;
                 case ADD:
-                    dataUtil.addData();
+                    cmdParser.addData(paramsString);
                     break;
                 case DELETE:
-                    dataUtil.deleteData();
+                    cmdParser.deleteData(paramsString);
                     break;
                 case UPDATE:
-                    dataUtil.updateData();
+                    cmdParser.updateData(paramsString);
                     break;
                 case ORDER:
-                    dataUtil.sortData();
+                    cmdParser.sortData(paramsString);
                     break;
                 case HELP:
                     showHelp(inputStr);
@@ -96,25 +107,6 @@ public class ConsoleUtil {
             }
         } catch (Exception ex) {
             System.out.println("usage H for Looking Help...");
-        }
-    }
-
-    private String fetchOperationType(String inputStr) {
-        dataUtil.setInputParamsString(parseInputString(inputStr));
-        return String.valueOf(inputStr.charAt(0));
-    }
-
-    private String parseInputString(String inputStr) {
-        if (inputStr.length() > 2) {
-            if (inputStr.charAt(1) == ' ') {
-                return inputStr.substring(2, inputStr.length());
-            } else {
-                throw new FormatException();
-            }
-        } else if (inputStr.length() == 1 && inputStr.equals("L")) {
-            return inputStr;
-        } else {
-            return null;
         }
     }
 }

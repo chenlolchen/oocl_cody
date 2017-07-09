@@ -1,6 +1,6 @@
-package com.oocl.crm.base;
+package com.oocl.crm.db;
 
-public class DoubleLinkBase<T> {
+public class MyLinkedList<T> {
     public Node<T> head;
     public Node<T> tail;
     public int size;
@@ -41,7 +41,7 @@ public class DoubleLinkBase<T> {
         }
     }
 
-    public DoubleLinkBase() {
+    public MyLinkedList() {
         size = 0;
     }
 
@@ -92,14 +92,6 @@ public class DoubleLinkBase<T> {
             tail.next = tmp;
         tail = tmp;
         size++;
-    }
-
-    public void iterateAll() {
-        Node temp = head;
-        while (temp != null) {
-            System.out.println(temp.getData().toString());
-            temp = temp.next;
-        }
     }
 
     public void set(int index, T element) {
