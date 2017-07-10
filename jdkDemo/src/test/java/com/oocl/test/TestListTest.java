@@ -58,7 +58,7 @@ public class TestListTest {
 
     @Test
     public void testTreeSetCustomer(){
-        Set<Customer> set = new HashSet<Customer>();
+        Set<Customer> set = new TreeSet<Customer>(new NameComparator());
 
         Customer c1 = new Customer();
         c1.id = 2;
