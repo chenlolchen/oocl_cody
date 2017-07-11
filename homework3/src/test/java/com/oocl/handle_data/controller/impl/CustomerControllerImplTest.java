@@ -21,24 +21,24 @@ public class CustomerControllerImplTest {
 
     @Test
     public void scanner() throws Exception {
-        customerController.scanner();
+        customerController.scanner("data.txt");
     }
 
     @Test
     public void outputBySortId() throws Exception {
-        customerController.scanner();
+        customerController.scanner("data.txt");
         customerController.outputBySortId();
     }
 
     @Test
     public void outputBySortDate() throws Exception {
-        customerController.scanner();
+        customerController.scanner("data.txt");
         customerController.outputBySortDate();
     }
 
     @Test
     public void outputXml() throws Exception {
-        customerController.scanner();
+        customerController.scanner("data.txt");
         customerController.outputXml();
     }
 

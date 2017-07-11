@@ -21,8 +21,8 @@ public class CustomerControllerImpl implements CustomerController {
         customerService = new CustomerServiceImpl();
     }
 
-    public void scanner() throws FileNotFoundException {
-        Scanner scanner = new Scanner(new FileInputStream("data.txt"));
+    public void scanner(String fileName) throws FileNotFoundException {
+        Scanner scanner = new Scanner(new FileInputStream(fileName));
         while (scanner.hasNext()){
             String s = scanner.nextLine();
             customerService.insertData(s);
@@ -46,5 +46,10 @@ public class CustomerControllerImpl implements CustomerController {
     public void outputXml() {
         Set<Customer> set = customerService.outputBySortId();
         FormatUtil.formatXml(set);
+    }
+
+    public String excuteCommand(String commmand) {
+//        FormatUtil.formatCommand(commmand);
+        return null;
     }
 }
