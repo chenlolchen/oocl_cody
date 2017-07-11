@@ -14,11 +14,11 @@ import java.util.regex.Pattern;
  * Created by CHENCO7 on 7/10/2017.
  */
 public class CustomerServiceImpl implements CustomerService {
-    public final static String EMAIL_REGULAR = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
-    public final static String SEX_REGULAR = "true|false";
-    public final static String DATE_REGULAR = "^(19|20)\\d{2}-(1[0-2]|0?[1-9])-(0?[1-9]|[1-2][0-9]|3[0-1])";
+    private final static String EMAIL_REGULAR = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
+    private final static String SEX_REGULAR = "true|false";
+    private final static String DATE_REGULAR = "^(19|20)\\d{2}-(1[0-2]|0?[1-9])-(0?[1-9]|[1-2][0-9]|3[0-1])";
 
-    CustomerDataProcess customerDataProcess;
+    private CustomerDataProcess customerDataProcess;
 
     public CustomerServiceImpl(){
         customerDataProcess = new CustomerDataProcessImpl();
