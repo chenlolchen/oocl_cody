@@ -23,8 +23,8 @@ public class CopyThread extends Thread {
             RandomAccessFile out = new RandomAccessFile(destPath, "rw");
             in.seek(start);
             out.seek(start);
-            FileOutputStream o = new FileOutputStream("c://project2.rar");
-            InputStream i = new FileInputStream("aa");
+//            FileOutputStream o = new FileOutputStream("c://project2.rar");
+//            InputStream i = new FileInputStream("aa");
 //            i.skip()
 //            int len = 0;
 //            byte[] buf = new byte[1024];

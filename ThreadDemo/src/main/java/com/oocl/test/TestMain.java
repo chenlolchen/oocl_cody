@@ -5,8 +5,8 @@ import java.io.File;
 public class TestMain {
 
     public static void main(String[] args) {
-        String srcPath = "c:\\projects.rar";
-        String destPath = "c:\\projects2.rar";
+        String srcPath = "e:\\maven.zip";
+        String destPath = "e:\\maven2.zip";
         File f = new File(srcPath);
         long len = f.length();
         int count = 3;
