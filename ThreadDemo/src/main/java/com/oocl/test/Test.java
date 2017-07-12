@@ -6,6 +6,7 @@ package com.oocl.test;
 public class Test {
     public static void main(String[] args) throws Exception {
         Thread t = new MyThread();
+        t.setDaemon(true);
 
         for(int i = 0; i < 100; i++){
             if(i == 20){

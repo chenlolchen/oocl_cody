@@ -15,12 +15,14 @@ public class TestProCon {
 
         new Thread(p).start();
         new Thread(c).start();
+//        new Thread(p).interrupt();
     }
 
     public static void sleep(int m){
         try {
             Thread.sleep(m);
         } catch (InterruptedException e) {
+//            System.exit(0);
             e.printStackTrace();
         }
     }
@@ -42,19 +44,25 @@ class Producer implements Runnable{
     public void run() {
         while (true){
             synchronized (base){
-                if(base.size() <= 5){
-                    int item = (int) (Math.random() * 11);
-                    base.add(item);
-                    System.out.println("producer ..." + item);
-                    base.notify();
-                }else {
-                    System.out.println("base is full ... ");
-                    try {
-                        System.out.println(base.toString());
-                        base.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                try {
+                    if(base.size() <= 5){
+                        int item = (int) (Math.random() * 11);
+                        base.add(item);
+                        System.out.println("producer ..." + item);
+                        base.notify();
+                    }else {
+                        System.out.println("base is full ... ");
+                        try {
+                            System.out.println(base.toString());
+                            base.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }finally {
+                    base.notify();
                 }
             }
             TestProCon.sleep(20);
