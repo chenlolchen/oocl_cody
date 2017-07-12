@@ -26,7 +26,7 @@ public class Server {
         InputStream in = socket.getInputStream();
         boolean flag =true;
         while (flag){
-            out.write("\nplease inupt your command:".getBytes());
+            out.write("\r\nplease inupt your command:\r\n".getBytes());
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
             String commmand = reader.readLine();
             try {

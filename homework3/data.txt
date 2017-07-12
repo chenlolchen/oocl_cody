@@ -1,20 +1,21 @@
 <Customers>
-	<customer.id='2'>
-		<name>tom</name>
-		<sex>true</sex>
-		<birthday>2000-9-3</birthday>
-		<email>tom@163.com</email>
-	</customer>
-	<customer.id='5'>
-		<name>alice</name>
-		<sex>false</sex>
-		<birthday>1999-10-23</birthday>
-		<email>alic2@qq.com</email>
-	</customer>
-	<customer.id='8'>
-		<name>john</name>
-		<sex>true</sex>
-		<birthday>1999-10-2</birthday>
-		<email>john@163.com</email>
-	</customer>
-</Customers>
+	<customer.id='2'>
+		<name>tom</name>
+		<sex>true</sex>
+		<birthday>2000-9-3</birthday>
+		<email>tom@163.com</email>
+	</customer>
+	<customer.id='5'>
+		<name>alice</name>
+		<sex>false</sex>
+		<birthday>1999-10-23</birthday>
+		<email>alic2@qq.com</email>
+	</customer>
+	<customer.id='8'>
+		<name>john</name>
+		<sex>true</sex>
+		<birthday>1999-10-2</birthday>
+		<email>john@163.com</email>
+	</customer>
+</Customers>
+

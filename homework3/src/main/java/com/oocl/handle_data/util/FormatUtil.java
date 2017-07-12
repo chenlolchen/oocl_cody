@@ -1,11 +1,9 @@
 package com.oocl.handle_data.util;
 
 import com.oocl.handle_data.exception.FormatException;
-import com.oocl.handle_data.pojo.Customer;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by CHENCO7 on 7/10/2017.

@@ -11,21 +11,21 @@ public class DataPrinterImpl implements DataPrinter {
 		StringBuilder sb = new StringBuilder();
 
 		if("xml".equals(format)){
-			sb.append("<Customers>\n");
+			sb.append("<Customers>\n\r");
 			for (Customer customer : customers) {
-				sb.append("\t<customer.id='" + customer.getId() + "'>\n");
-				sb.append("\t\t<name>" + customer.getName() + "</name>\n");
-				sb.append("\t\t<sex>" + customer.getSex() + "</sex>\n");
-				sb.append("\t\t<birthday>" + customer.getBirthDay() + "</birthday>\n");
-				sb.append("\t\t<email>" + customer.getEmail() + "</email>\n");
-				sb.append("\t</customer>\n");
+				sb.append("\t<customer.id='" + customer.getId() + "'>\n\r");
+				sb.append("\t\t<name>" + customer.getName() + "</name>\n\r");
+				sb.append("\t\t<sex>" + customer.getSex() + "</sex>\n\r");
+				sb.append("\t\t<birthday>" + customer.getBirthDay() + "</birthday>\n\r");
+				sb.append("\t\t<email>" + customer.getEmail() + "</email>\n\r");
+				sb.append("\t</customer>\n\r");
 			}
-			sb.append("</Customers>\n");
+			sb.append("</Customers>\n\r");
 			return sb;
 		}
 		else if("line".equals(format)){
 			for(Customer customer : customers){
-				sb.append(customer.toString() + "\n");
+				sb.append(customer.toString() + "\r\n");
 			}
 			return sb;
 		}
