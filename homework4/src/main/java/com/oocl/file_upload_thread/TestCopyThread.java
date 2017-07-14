@@ -5,8 +5,8 @@ package com.oocl.file_upload_thread;
  */
 public class TestCopyThread {
     public static void main(String[] args) {
-        String sourceFile = "e://test.jpg";
-        String targetFile = "e://test2.jpg";
+        String sourceFile = "c://projects.rar";
+        String targetFile = "c://projects2.rar";
         //线程数
         int blockCount = 3;
         for (int i = 0; i < blockCount; i++) {
