@@ -14,14 +14,12 @@ import com.oocl.chat_room.protocol.DataPackage;
 public class DataPackageAnalyserImpl implements DataPackageAnalyser {
 	private ObjectOutputStream out;
 	private ObjectInputStream in;
-	private Socket socket;
 
 	public DataPackageAnalyserImpl(){
 
 	}
 
 	public DataPackageAnalyserImpl(Socket socket){
-		this.socket = socket;
 		try {
 			out = new ObjectOutputStream(socket.getOutputStream());
 			in = new ObjectInputStream(socket.getInputStream());
@@ -34,7 +32,6 @@ public class DataPackageAnalyserImpl implements DataPackageAnalyser {
 	public DataPackage readPackage() {
 		DataPackage dataPackage = null;
 		try {
-			in = new ObjectInputStream(socket.getInputStream());
 			dataPackage = (DataPackage)in.readObject();
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
@@ -45,7 +42,6 @@ public class DataPackageAnalyserImpl implements DataPackageAnalyser {
 	@Override
 	public void sendPackage(DataPackage dataPackage){
 		try {
-			out = new ObjectOutputStream(socket.getOutputStream());
 			out.writeObject(dataPackage);
 		} catch (IOException e) {
 			e.printStackTrace();

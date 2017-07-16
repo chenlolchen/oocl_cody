@@ -50,6 +50,7 @@ public class ClientAction implements Action {
         return dataPackageAnalyser.readPackage();
     }
 
+    //format string like: "cody\\sky\\allen\\..."
     private void addModelToChatFrame(String message){
         String messagesData[] = message.split("\\\\");
         boolean flag = false;
