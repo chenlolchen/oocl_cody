@@ -3,22 +3,26 @@ package com.oocl.chat_room.ui;
 import com.oocl.chat_room.action.impl.ClientAction;
 import com.oocl.chat_room.pojo.User;
 import com.oocl.chat_room.protocol.DataPackage;
+import com.oocl.chat_room.util.DateUtil;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Date;
 
 public class ChatFrame extends JFrame implements ActionListener, Runnable {
     private ClientAction clientAction;
     private User user = null;
     private boolean flag;
+    private String connector;
 
     private JTextArea chatTa;
     private JTextField sendTf;
@@ -26,7 +30,7 @@ public class ChatFrame extends JFrame implements ActionListener, Runnable {
     private JButton shakeBtn;
     private JList<String> friendsJl;
     private JScrollPane scorllPanel;
-    private JPanel panRight;
+   
     private DefaultListModel<String> model;
 
     public User getUser() {
@@ -49,10 +53,6 @@ public class ChatFrame extends JFrame implements ActionListener, Runnable {
         return friendsJl;
     }
 
-    public void setFriendsJl(JList<String> friendsJl) {
-        this.friendsJl = friendsJl;
-    }
-
     public ChatFrame(User user) {
         try {
             this.user = user;
@@ -60,7 +60,7 @@ public class ChatFrame extends JFrame implements ActionListener, Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.setSize(400, 300);
+        this.setSize(600, 500);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         init();
@@ -71,15 +71,18 @@ public class ChatFrame extends JFrame implements ActionListener, Runnable {
     private void init() {
         this.setLayout(new BorderLayout());
         JPanel panLeft = new JPanel(new BorderLayout());
-        panRight = new JPanel(new BorderLayout());
+        JPanel panRight = new JPanel(new BorderLayout());
         JPanel panLeftBottom = new JPanel(new BorderLayout());
         JPanel panBtnGroup = new JPanel(new BorderLayout());
         chatTa = new JTextArea(10, 20);
-
+        panRight.setPreferredSize(new Dimension(100, 0));
+       
 
         sendTf = new JTextField();
         sendBtn = new JButton("send");
         shakeBtn = new JButton("shake");
+        sendBtn.setSize(25, 25);
+        shakeBtn.setSize(25, 25);
         sendTf.setFont(new Font("宋体", Font.BOLD, 18));
         sendTf.setForeground(Color.red);
         chatTa.setFont(new Font("宋体", Font.BOLD, 18));
@@ -101,12 +104,11 @@ public class ChatFrame extends JFrame implements ActionListener, Runnable {
 
         model = new DefaultListModel<>();
         friendsJl = new JList<String>(model);
-
+        friendsJl.setFont(new Font("宋体", Font.BOLD, 22));
+        
         model.addElement("ALL");
-        friendsJl.setSelectedIndex(0);
         scorllPanel = new JScrollPane(friendsJl);
         panRight.add(scorllPanel, BorderLayout.CENTER);
-        panRight.setSize(200, 300);
 
         this.add(panLeft, BorderLayout.CENTER);
         this.add(panRight, BorderLayout.EAST);
@@ -119,15 +121,19 @@ public class ChatFrame extends JFrame implements ActionListener, Runnable {
             public void valueChanged(ListSelectionEvent e) {
                 Object obj = ((JList) e.getSource()).getSelectedValue();
                 if (obj != null) {
-                    setTitle(obj.toString());
+                    setTitle(user.getName() +  " 与 " + obj.toString() + " 正在对话");
+                    connector = obj.toString();
                 }
             }
         });
 
+        // 设置默认选中 ALL
+        friendsJl.setSelectedIndex(0);
+
         shakeBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clientAction.sendDataPackage(new DataPackage(user.getName(), getTitle(), DataPackage.MessageType.SHAKE, null));
+                clientAction.sendDataPackage(new DataPackage(user.getName(), connector, DataPackage.MessageType.SHAKE, null));
             }
         });
     }
@@ -145,14 +151,13 @@ public class ChatFrame extends JFrame implements ActionListener, Runnable {
     }
 
     private void sendMsg() {
-        String content = user.getName() + " : " + sendTf.getText();
-        sendTf.setText("");
-        System.out.println(content);
+        long time = new Date().getTime();
+        String content = user.getName() + " 对 " + connector + " 说 " + "( " + DateUtil.formatDate(time) + " )" + "\n\r  " + sendTf.getText();
         chatTa.append(content + "\n");
-
         if (!content.equals("")) {
-            clientAction.sendDataPackage(new DataPackage(user.getName(), getTitle(), DataPackage.MessageType.MESSAGE, content));
+            clientAction.sendDataPackage(new DataPackage(user.getName(), connector, DataPackage.MessageType.MESSAGE, content, time));
         }
+        sendTf.setText("");
     }
 
     public void shakeWindow() {

@@ -32,7 +32,7 @@ public class ServerAction implements Action {
             chatSocket.setUser(new User(dataPackage.getFromName()));
             chatRoomManager.showList();
         } else if (dataPackage.getMessageType() == DataPackage.MessageType.MESSAGE) {
-            if (dataPackage.getToName().equals("ALL") || dataPackage.getToName().equals("")) {
+            if (dataPackage.getToName().equals("ALL")) {
                 chatRoomManager.sendAll(dataPackage);
             } else if(!dataPackage.getToName().equals(chatSocket.getUser().getName())){
                 chatRoomManager.sendToSelected(dataPackage);
@@ -41,7 +41,7 @@ public class ServerAction implements Action {
             chatRoomManager.removeItem(dataPackage);
             chatSocket.setFlag(false);
         } else if (dataPackage.getMessageType() == DataPackage.MessageType.SHAKE) {
-            if (dataPackage.getToName().equals("ALL") || dataPackage.getToName().equals("")) {
+            if (dataPackage.getToName().equals("ALL")) {
                 chatRoomManager.shakeAll(dataPackage);
             } else if(!dataPackage.getToName().equals(chatSocket.getUser().getName())) {
                 chatRoomManager.shakeToSelected(dataPackage);

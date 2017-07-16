@@ -57,7 +57,7 @@ public class ClientAction implements Action {
         int size = chatFrame.getModel().getSize();
         for (String data : messagesData) {
             for (int j = 0; j < size; j++) {
-                if (data.equals(chatFrame.getModel().get(j))) {
+                if (data.equals(chatFrame.getModel().get(j)) || chatFrame.getUser().getName().equals(data)) {
                     flag = true;
                 }
             }
