@@ -179,7 +179,7 @@ public class ChatFrame extends JFrame implements ActionListener, Runnable {
         clientAction.sendDataPackage(new DataPackage(user.getName(), "ALL", DataPackage.MessageType.LOGIN, "LOGIN"));
         while (flag) {
             DataPackage dataPackage = clientAction.receiveDataPackage();
-            clientAction.handleDatapackage(dataPackage);
+            clientAction.handleDataPackage(dataPackage);
         }
     }
 }

@@ -26,7 +26,7 @@ public class ServerAction implements Action {
     }
 
     @Override
-    public void handleDatapackage(DataPackage dataPackage) {
+    public void handleDataPackage(DataPackage dataPackage) {
         System.out.println(dataPackage);
         if (dataPackage.getMessageType() == DataPackage.MessageType.LOGIN) {
             chatSocket.setUser(new User(dataPackage.getFromName()));

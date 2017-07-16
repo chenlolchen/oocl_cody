@@ -38,7 +38,7 @@ public class ChatSocket implements Runnable {
         flag = true;
         while (flag) {
             DataPackage dataPackage = serverAction.receiveDataPackage();
-            serverAction.handleDatapackage(dataPackage);
+            serverAction.handleDataPackage(dataPackage);
         }
     }
 }

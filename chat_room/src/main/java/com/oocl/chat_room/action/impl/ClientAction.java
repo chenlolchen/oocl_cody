@@ -21,7 +21,7 @@ public class ClientAction implements Action {
     }
 
     @Override
-    public void handleDatapackage(DataPackage dataPackage) {
+    public void handleDataPackage(DataPackage dataPackage) {
         if (dataPackage.getMessageType() == DataPackage.MessageType.MESSAGE) {
             chatFrame.getChatTa().append(dataPackage.getMessageData() + "\r\n");
         } else if (dataPackage.getMessageType() == DataPackage.MessageType.LIST) {
