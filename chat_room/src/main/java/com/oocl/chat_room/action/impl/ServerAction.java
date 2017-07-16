@@ -27,6 +27,7 @@ public class ServerAction implements Action {
 
     @Override
     public void handleDatapackage(DataPackage dataPackage) {
+        System.out.println(dataPackage);
         if (dataPackage.getMessageType() == DataPackage.MessageType.LOGIN) {
             chatSocket.setUser(new User(dataPackage.getFromName()));
             chatRoomManager.showList();
@@ -48,13 +49,14 @@ public class ServerAction implements Action {
         }
     }
 
+    @Override
     public void sendDataPackage(DataPackage dataPackage){
         dataPackageAnalyser.sendPackage(dataPackage);
     }
 
+    @Override
     public DataPackage receiveDataPackage(){
-        DataPackage dataPackage = dataPackageAnalyser.readPackage();
-        return dataPackage;
+        return dataPackageAnalyser.readPackage();
     }
 
 }

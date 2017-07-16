@@ -7,4 +7,8 @@ import com.oocl.chat_room.protocol.DataPackage;
  */
 public interface Action {
     void handleDatapackage(DataPackage dataPackage);
+
+    void sendDataPackage(DataPackage dataPackage);
+
+    DataPackage receiveDataPackage();
 }

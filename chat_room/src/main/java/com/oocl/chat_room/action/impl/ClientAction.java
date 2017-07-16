@@ -30,6 +30,9 @@ public class ClientAction implements Action {
             if (dataPackage.getFromName().equals(chatFrame.getUser().getName())) {
                 chatFrame.setFlag(false);
             } else {
+                if(chatFrame.getFriendsJl().getSelectedValue().equals(dataPackage.getFromName())){
+                    chatFrame.getFriendsJl().setSelectedIndex(0);
+                }
                 chatFrame.getModel().removeElement(dataPackage.getFromName());
             }
         } else if (dataPackage.getMessageType() == DataPackage.MessageType.SHAKE) {
@@ -37,27 +40,28 @@ public class ClientAction implements Action {
         }
     }
 
+    @Override
     public void sendDataPackage(DataPackage dataPackage){
         dataPackageAnalyser.sendPackage(dataPackage);
     }
 
+    @Override
     public DataPackage receiveDataPackage(){
-        DataPackage dataPackage = dataPackageAnalyser.readPackage();
-        return dataPackage;
+        return dataPackageAnalyser.readPackage();
     }
 
     private void addModelToChatFrame(String message){
         String messagesData[] = message.split("\\\\");
         boolean flag = false;
         int size = chatFrame.getModel().getSize();
-        for (int i = 0; i < messagesData.length; i++) {
+        for (String data : messagesData) {
             for (int j = 0; j < size; j++) {
-                if (messagesData[i].equals(chatFrame.getModel().get(j))) {
+                if (data.equals(chatFrame.getModel().get(j))) {
                     flag = true;
                 }
             }
-            if (flag == false) {
-                chatFrame.getModel().addElement(messagesData[i]);
+            if (!flag) {
+                chatFrame.getModel().addElement(data);
             }
             flag = false;
         }

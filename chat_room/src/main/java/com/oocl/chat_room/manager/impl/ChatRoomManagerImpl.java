@@ -78,8 +78,6 @@ public class ChatRoomManagerImpl implements ChatRoomManager {
             dp = new DataPackage(dataPackage.getFromName(), "ALL", DataPackage.MessageType.LOGOUT, "LOGOUT");
             chat.send(dp);
         }
-
-        printList();
     }
 
     @Override
@@ -97,12 +95,6 @@ public class ChatRoomManagerImpl implements ChatRoomManager {
             if (chat.getUser().getName().equals(dataPackage.getToName())) {
                 chat.send(dataPackage);
             }
-        }
-    }
-
-    private void printList(){
-        for (ChatSocket chat : chatroom){
-            System.out.println(chat.getUser().getName());
         }
     }
 }

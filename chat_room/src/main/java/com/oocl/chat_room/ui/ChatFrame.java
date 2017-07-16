@@ -45,6 +45,14 @@ public class ChatFrame extends JFrame implements ActionListener, Runnable {
         return model;
     }
 
+    public JList<String> getFriendsJl() {
+        return friendsJl;
+    }
+
+    public void setFriendsJl(JList<String> friendsJl) {
+        this.friendsJl = friendsJl;
+    }
+
     public ChatFrame(User user) {
         try {
             this.user = user;
