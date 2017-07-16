@@ -1,11 +1,15 @@
 package com.oocl.chat_room.action.impl;
 
 import com.oocl.chat_room.action.Action;
+import com.oocl.chat_room.analyser.DataPackageAnalyser;
+import com.oocl.chat_room.analyser.impl.DataPackageAnalyserImpl;
 import com.oocl.chat_room.manager.ChatRoomManager;
 import com.oocl.chat_room.manager.impl.ChatRoomManagerImpl;
 import com.oocl.chat_room.pojo.User;
 import com.oocl.chat_room.protocol.DataPackage;
 import com.oocl.chat_room.server.thread.ChatSocket;
+
+import java.net.Socket;
 
 /**
  * Created by CHENCO7 on 7/13/2017.
@@ -13,10 +17,12 @@ import com.oocl.chat_room.server.thread.ChatSocket;
 public class ServerAction implements Action {
     private ChatSocket chatSocket;
     private ChatRoomManager chatRoomManager;
+    private DataPackageAnalyser dataPackageAnalyser;
 
-    public ServerAction(ChatSocket chatSocket) {
+    public ServerAction(Socket socket, ChatSocket chatSocket) {
         this.chatSocket = chatSocket;
         this.chatRoomManager = new ChatRoomManagerImpl();
+        this.dataPackageAnalyser = new DataPackageAnalyserImpl(socket);
     }
 
     @Override
@@ -41,4 +47,14 @@ public class ServerAction implements Action {
             }
         }
     }
+
+    public void sendDataPackage(DataPackage dataPackage){
+        dataPackageAnalyser.sendPackage(dataPackage);
+    }
+
+    public DataPackage receiveDataPackage(){
+        DataPackage dataPackage = dataPackageAnalyser.readPackage();
+        return dataPackage;
+    }
+
 }

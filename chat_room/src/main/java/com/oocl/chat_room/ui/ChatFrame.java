@@ -1,8 +1,6 @@
 package com.oocl.chat_room.ui;
 
 import com.oocl.chat_room.action.impl.ClientAction;
-import com.oocl.chat_room.analyser.DataPackageAnalyser;
-import com.oocl.chat_room.analyser.impl.DataPackageAnalyserImpl;
 import com.oocl.chat_room.pojo.User;
 import com.oocl.chat_room.protocol.DataPackage;
 
@@ -18,8 +16,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class ChatFrame extends JFrame implements ActionListener, Runnable {
-    private Socket socket = null;
-    private DataPackageAnalyser dataPackageAnalyser;
+    private ClientAction clientAction;
     private User user = null;
     private boolean flag;
 
@@ -31,7 +28,6 @@ public class ChatFrame extends JFrame implements ActionListener, Runnable {
     private JScrollPane scorllPanel;
     private JPanel panRight;
     private DefaultListModel<String> model;
-    private ClientAction clientAction;
 
     public User getUser() {
         return user;
@@ -52,9 +48,7 @@ public class ChatFrame extends JFrame implements ActionListener, Runnable {
     public ChatFrame(User user) {
         try {
             this.user = user;
-            this.clientAction = new ClientAction(this);
-            socket = new Socket("127.0.0.1", 8888);
-            this.dataPackageAnalyser = new DataPackageAnalyserImpl(socket);
+            this.clientAction = new ClientAction(new Socket("127.0.0.1", 8888), this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -125,7 +119,7 @@ public class ChatFrame extends JFrame implements ActionListener, Runnable {
         shakeBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dataPackageAnalyser.sendPackage(new DataPackage(user.getName(), getTitle(), DataPackage.MessageType.SHAKE, null));
+                clientAction.sendDataPackage(new DataPackage(user.getName(), getTitle(), DataPackage.MessageType.SHAKE, null));
             }
         });
     }
@@ -133,7 +127,7 @@ public class ChatFrame extends JFrame implements ActionListener, Runnable {
     @Override
     protected void processWindowEvent(WindowEvent e) {
         if (e.getID() == WindowEvent.WINDOW_CLOSING) {
-            dataPackageAnalyser.sendPackage(new DataPackage(user.getName(), "ALL", DataPackage.MessageType.LOGOUT, "LOGOUT"));
+            clientAction.sendDataPackage(new DataPackage(user.getName(), "ALL", DataPackage.MessageType.LOGOUT, "LOGOUT"));
         }
         super.processWindowEvent(e);
     }
@@ -149,7 +143,7 @@ public class ChatFrame extends JFrame implements ActionListener, Runnable {
         chatTa.append(content + "\n");
 
         if (!content.equals("")) {
-            dataPackageAnalyser.sendPackage(new DataPackage(user.getName(), getTitle(), DataPackage.MessageType.MESSAGE, content));
+            clientAction.sendDataPackage(new DataPackage(user.getName(), getTitle(), DataPackage.MessageType.MESSAGE, content));
         }
     }
 
@@ -174,9 +168,9 @@ public class ChatFrame extends JFrame implements ActionListener, Runnable {
     @Override
     public void run() {
         flag = true;
-        dataPackageAnalyser.sendPackage(new DataPackage(user.getName(), "ALL", DataPackage.MessageType.LOGIN, "LOGIN"));
+        clientAction.sendDataPackage(new DataPackage(user.getName(), "ALL", DataPackage.MessageType.LOGIN, "LOGIN"));
         while (flag) {
-            DataPackage dataPackage = dataPackageAnalyser.readPackage();
+            DataPackage dataPackage = clientAction.receiveDataPackage();
             clientAction.handleDatapackage(dataPackage);
         }
     }

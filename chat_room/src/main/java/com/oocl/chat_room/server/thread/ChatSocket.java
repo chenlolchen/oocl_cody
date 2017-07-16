@@ -1,8 +1,6 @@
 package com.oocl.chat_room.server.thread;
 
 import com.oocl.chat_room.action.impl.ServerAction;
-import com.oocl.chat_room.analyser.DataPackageAnalyser;
-import com.oocl.chat_room.analyser.impl.DataPackageAnalyserImpl;
 import com.oocl.chat_room.pojo.User;
 import com.oocl.chat_room.protocol.DataPackage;
 
@@ -12,11 +10,9 @@ import java.net.Socket;
  * Created by CHENCO7 on 7/13/2017.
  */
 public class ChatSocket implements Runnable {
-    private User user;
-    private Socket socket;
-    private boolean flag;
     private ServerAction serverAction;
-    private DataPackageAnalyser dataPackageAnalyser;
+    private User user;
+    private boolean flag;
 
     public User getUser() {
         return user;
@@ -31,19 +27,17 @@ public class ChatSocket implements Runnable {
     }
 
     public ChatSocket(Socket socket) {
-        this.socket = socket;
-        this.serverAction = new ServerAction(this);
-        this.dataPackageAnalyser = new DataPackageAnalyserImpl(socket);
+        this.serverAction = new ServerAction(socket, this);
     }
 
     public void send(DataPackage send) {
-        dataPackageAnalyser.sendPackage(send);
+        serverAction.sendDataPackage(send);
     }
 
     public void run() {
         flag = true;
         while (flag) {
-            DataPackage dataPackage = dataPackageAnalyser.readPackage();
+            DataPackage dataPackage = serverAction.receiveDataPackage();
             serverAction.handleDatapackage(dataPackage);
         }
     }

@@ -1,17 +1,23 @@
 package com.oocl.chat_room.action.impl;
 
 import com.oocl.chat_room.action.Action;
+import com.oocl.chat_room.analyser.DataPackageAnalyser;
+import com.oocl.chat_room.analyser.impl.DataPackageAnalyserImpl;
 import com.oocl.chat_room.protocol.DataPackage;
 import com.oocl.chat_room.ui.ChatFrame;
+
+import java.net.Socket;
 
 /**
  * Created by CHENCO7 on 7/13/2017.
  */
 public class ClientAction implements Action {
     private ChatFrame chatFrame;
+    private DataPackageAnalyser dataPackageAnalyser;
 
-    public ClientAction(ChatFrame chatFrame) {
+    public ClientAction(Socket socket, ChatFrame chatFrame) {
         this.chatFrame = chatFrame;
+        this.dataPackageAnalyser = new DataPackageAnalyserImpl(socket);
     }
 
     @Override
@@ -29,6 +35,15 @@ public class ClientAction implements Action {
         } else if (dataPackage.getMessageType() == DataPackage.MessageType.SHAKE) {
             chatFrame.shakeWindow();
         }
+    }
+
+    public void sendDataPackage(DataPackage dataPackage){
+        dataPackageAnalyser.sendPackage(dataPackage);
+    }
+
+    public DataPackage receiveDataPackage(){
+        DataPackage dataPackage = dataPackageAnalyser.readPackage();
+        return dataPackage;
     }
 
     private void addModelToChatFrame(String message){
