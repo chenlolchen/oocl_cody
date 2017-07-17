@@ -40,6 +40,7 @@ public class ServerAction implements Action {
         } else if (dataPackage.getMessageType() == DataPackage.MessageType.LOGOUT) {
             chatRoomManager.removeItem(dataPackage);
             chatSocket.setFlag(false);
+            dataPackageAnalyser.closeSession();
         } else if (dataPackage.getMessageType() == DataPackage.MessageType.SHAKE) {
             if (dataPackage.getToName().equals("ALL")) {
                 chatRoomManager.shakeAll(dataPackage);
@@ -56,7 +57,13 @@ public class ServerAction implements Action {
 
     @Override
     public DataPackage receiveDataPackage(){
-        return dataPackageAnalyser.readPackage();
+        DataPackage dataPackage = null;
+        try {
+            dataPackage = dataPackageAnalyser.readPackage();
+        }catch (Exception ex){
+            System.out.println(chatSocket.getUser().getName() + " is down");
+        }
+        return dataPackage;
     }
 
 }

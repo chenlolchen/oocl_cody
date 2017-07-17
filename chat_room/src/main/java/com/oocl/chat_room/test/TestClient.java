@@ -26,7 +26,7 @@ public class TestClient {
                 new Thread(chatSocket).start();
                 // 服务端往客户端发送消息
                 chatSocket.send(new DataPackage("server", "client", DataPackage.MessageType.MESSAGE, "test data"));
-                chatSocket.send(new DataPackage("server", "client", DataPackage.MessageType.MESSAGE, "test data2"));
+                chatSocket.send(new DataPackage("server", "client", DataPackage.MessageType.SHAKE, "test data2"));
                 chatSocket.send(new DataPackage("server", "client", DataPackage.MessageType.MESSAGE, "test data3"));
             }
         } catch (Exception e) {

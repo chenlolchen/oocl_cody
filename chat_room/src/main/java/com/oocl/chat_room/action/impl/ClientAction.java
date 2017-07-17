@@ -6,6 +6,7 @@ import com.oocl.chat_room.analyser.impl.DataPackageAnalyserImpl;
 import com.oocl.chat_room.protocol.DataPackage;
 import com.oocl.chat_room.ui.ChatFrame;
 
+import java.net.DatagramPacket;
 import java.net.Socket;
 
 /**
@@ -22,6 +23,11 @@ public class ClientAction implements Action {
 
     @Override
     public void handleDataPackage(DataPackage dataPackage) {
+        if (dataPackage == null) {
+            dataPackageAnalyser.closeSession();
+            chatFrame.setFlag(false);
+            return;
+        }
         if (dataPackage.getMessageType() == DataPackage.MessageType.MESSAGE) {
             chatFrame.getChatTa().append(dataPackage.getMessageData() + "\r\n");
         } else if (dataPackage.getMessageType() == DataPackage.MessageType.LIST) {
@@ -29,6 +35,7 @@ public class ClientAction implements Action {
         } else if (dataPackage.getMessageType() == DataPackage.MessageType.LOGOUT) {
             if (dataPackage.getFromName().equals(chatFrame.getUser().getName())) {
                 chatFrame.setFlag(false);
+                dataPackageAnalyser.closeSession();
             } else {
                 if(chatFrame.getFriendsJl().getSelectedValue().equals(dataPackage.getFromName())){
                     chatFrame.getFriendsJl().setSelectedIndex(0);
@@ -42,12 +49,21 @@ public class ClientAction implements Action {
 
     @Override
     public void sendDataPackage(DataPackage dataPackage){
-        dataPackageAnalyser.sendPackage(dataPackage);
+        if(!dataPackageAnalyser.sendPackage(dataPackage)){
+            chatFrame.setTitle("服务器没响应");
+        }
     }
 
     @Override
     public DataPackage receiveDataPackage(){
-        return dataPackageAnalyser.readPackage();
+        DataPackage dataPackage = null;
+        try {
+            dataPackage = dataPackageAnalyser.readPackage();
+        }catch (Exception ex){
+            chatFrame.getChatTa().append("server is down" + "\r\n");
+        }finally {
+            return dataPackage;
+        }
     }
 
     //format string like: "cody\\sky\\allen\\..."

@@ -4,14 +4,13 @@ import com.oocl.chat_room.manager.ChatRoomManager;
 import com.oocl.chat_room.protocol.DataPackage;
 import com.oocl.chat_room.server.thread.ChatSocket;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Vector;
 
 /**
  * Created by chen on 2017/7/15.
  */
 public class ChatRoomManagerImpl implements ChatRoomManager {
-    private static List<ChatSocket> chatroom = new ArrayList<ChatSocket>();
+    private static Vector<ChatSocket> chatroom = new Vector<ChatSocket>();
 
     @Override
     public void register(ChatSocket chatSocket) {
