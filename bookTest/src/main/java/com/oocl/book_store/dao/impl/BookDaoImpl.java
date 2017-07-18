@@ -12,6 +12,36 @@ import java.util.List;
  * Created by CHENCO7 on 7/18/2017.
  */
 public class BookDaoImpl implements BookDao {
+    private Connection connection;
+
+    public void createSession(){
+        this.connection = DBUtil.createConnectionWithDataSource();
+    }
+
+    public void closeSession(){
+        DBUtil.close(this.connection, null, null);
+    }
+
+    public int addBookWithOutCloseSession(Book book){
+        String sql = "INSERT INTO books(id, name, pub_date, author, price, is_new, publisher) VALUES (seq01.nextval,?,?,?,?,?,?)";
+        PreparedStatement preparedStatement = null;
+
+        int m = 0;
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, book.getName());
+            preparedStatement.setDate(2, new java.sql.Date(book.getPublishDate().getTime()));
+            preparedStatement.setString(3, book.getAuthor());
+            preparedStatement.setDouble(4, book.getPrice());
+            preparedStatement.setBoolean(5, book.isNewBook());
+            preparedStatement.setString(6, book.getPublisher());
+            m = preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return m;
+    }
 
     public int addBook(Book book) {
         String sql = "INSERT INTO books(id, name, pub_date, author, price, is_new, publisher) VALUES (seq01.nextval,?,?,?,?,?,?)";

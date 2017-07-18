@@ -23,8 +23,10 @@ public class DBWriteThread implements Runnable {
     }
 
     public void run() {
+        bookDao.createSession();
         for(int i = start; i < end; i++){
-            bookDao.addBook(bookList.get(i));
+            bookDao.addBookWithOutCloseSession(bookList.get(i));
         }
+        bookDao.closeSession();
     }
 }
