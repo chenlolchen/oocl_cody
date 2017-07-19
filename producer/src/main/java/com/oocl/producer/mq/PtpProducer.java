@@ -23,7 +23,7 @@ public class PtpProducer {
         this.xmlAction = new XmlActionImpl();
     }
 
-    public void start(int number){
+    public void start(){
         try {
             ConnectionFactory factory = new ActiveMQConnectionFactory("tcp://localhost:61616");
             Destination queue = new ActiveMQQueue("chen_queue");
