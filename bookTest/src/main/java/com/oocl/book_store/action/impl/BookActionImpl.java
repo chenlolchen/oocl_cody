@@ -68,7 +68,6 @@ public class BookActionImpl implements BookAction {
     }
 
     public void saveBatchDataToDB(List<Book> readData) {
-
         bookDao.batchAddBook(readData);
     }
 }

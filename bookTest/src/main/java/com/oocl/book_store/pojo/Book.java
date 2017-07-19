@@ -1,5 +1,7 @@
 package com.oocl.book_store.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,6 +11,7 @@ import java.util.Date;
 public class Book implements Serializable {
     private Integer id;
     private String name;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date publishDate;
     private String author;
     private Double price;
