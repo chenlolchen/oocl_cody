@@ -1,7 +1,7 @@
 package com.oocl.producer.xml.impl;
 
 import com.oocl.producer.pojo.Book;
-import com.oocl.producer.xml.BooksHandler;
+import com.oocl.producer.handler.BooksHandler;
 import com.oocl.producer.xml.XmlAction;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -69,7 +69,7 @@ public class XmlActionImpl implements XmlAction{
         List<Book> bookList = null;
         try {
             parser = SAXParserFactory.newInstance().newSAXParser();
-            //向事件源注册handler
+            // 向事件源注册handler
             BooksHandler booksHandler = new BooksHandler();
             parser.parse("books.xml", booksHandler);
             bookList = booksHandler.getBookList();
