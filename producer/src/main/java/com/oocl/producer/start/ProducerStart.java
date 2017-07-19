@@ -16,6 +16,7 @@ public class ProducerStart {
         xmlAction.createXmlData(10000);
         List<Book> bookList = xmlAction.readData();
 
+        // dataNumber: 对象个数, threadNumber: 启动线程数
         int dataNumber = bookList.size();
         int start = 0;
         int threadNumber = 5;
