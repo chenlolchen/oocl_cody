@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<customers>
+    <customer id="c1">
+        <name>john</name>
+        <age>100</age>
+    </customer>
+    <customer id="c2">
+        <name>chen</name>
+        <age>22</age>
+    </customer>
+</customers>

@@ -168,4 +168,31 @@ public class BookDaoImpl implements BookDao {
         }
         return list;
     }
+
+    public int batchAddBook(List<Book> list) {
+        String sql = "INSERT INTO books(id, name, pub_date, author, price, is_new, publisher) VALUES(seq01.nextval,?,?,?,?,?,?)";
+        PreparedStatement pst = null;
+        Connection conn = null;
+        int result = 0;
+        try {
+            conn = DBUtil.createConnectionWithDataSource();
+            pst = conn.prepareStatement(sql);
+            for (int i = 0; i < list.size(); i++) {
+                Book b = list.get(i);
+                pst.setString(1, b.getName());
+                pst.setDate(2, new java.sql.Date(b.getPublishDate().getTime()));
+                pst.setString(3, b.getAuthor());
+                pst.setDouble(4, b.getPrice());
+                pst.setBoolean(5, b.isNewBook());
+                pst.setString(6, b.getPublisher());
+                pst.addBatch();
+            }
+            result = pst.executeBatch().length;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(conn, pst, null);
+        }
+        return result;
+    }
 }

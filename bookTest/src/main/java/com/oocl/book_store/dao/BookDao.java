@@ -16,4 +16,5 @@ public interface BookDao {
     int updateBook(Book book);
     Book loadBook(Integer id);
     List<Book> findAll();
+    int batchAddBook(List<Book> readData);
 }

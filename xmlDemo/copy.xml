@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bookstore>
+  <book TyPe="必修课" ISbN="7-111-19149-2">
+    <title>数据结构</title>
+    <author>严蔚敏</author>
+    <price>30.00</price>
+  </book>
+  <book TyPe="必修课" ISbN="7-111-19149-3">
+    <title>数据结构</title>
+    <author>严蔚敏</author>
+    <price>30.00</price>
+  </book>
+  <book TyPe="必修课" ISbN="7-111-19149-4">
+    <title>数据结构</title>
+    <author>严蔚敏</author>
+    <price>30.00</price>
+  </book>
+  <book TyPe="必修课" ISbN="7-111-19149-5">
+    <title>数据结构</title>
+    <author>严蔚敏</author>
+    <price>30.00</price>
+  </book>
+  <book TyPe="必修课" ISbN="7-111-19149-6">
+    <title>数据结构</title>
+    <author>严蔚敏</author>
+    <price>30.00</price>
+  </book>
+  <book TyPe="必修课" ISbN="7-111-19149-7">
+    <title>数据结构</title>
+    <author>严蔚敏</author>
+    <price>30.00</price>
+  </book>
+</bookstore>
+

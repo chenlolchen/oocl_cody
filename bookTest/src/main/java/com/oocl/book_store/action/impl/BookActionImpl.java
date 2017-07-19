@@ -15,6 +15,12 @@ import java.util.List;
  * Created by CHENCO7 on 7/18/2017.
  */
 public class BookActionImpl implements BookAction {
+    private BookDao bookDao;
+
+    public BookActionImpl(){
+        this.bookDao = new BookDaoImpl();
+    }
+
     public List<Book> initData(int dataNumber){
         List<Book> bookList = new ArrayList<Book>();
         for(int m = 1; m <= dataNumber; m++){
@@ -59,5 +65,10 @@ public class BookActionImpl implements BookAction {
         //处理最后一个模块
         dbThread = new DBWriteThread(start, dataNumber, bookList);
         new Thread(dbThread).start();
+    }
+
+    public void saveBatchDataToDB(List<Book> readData) {
+
+        bookDao.batchAddBook(readData);
     }
 }

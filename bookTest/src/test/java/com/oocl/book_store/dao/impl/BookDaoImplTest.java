@@ -28,11 +28,11 @@ public class BookDaoImplTest {
         Assert.assertTrue(m == 1);
     }
 
-    @Test
-    public void deleteBook() {
-        int m = bookDao.deleteBook(4);
-        Assert.assertTrue(m == 1);
-    }
+//    @Test
+//    public void deleteBook() {
+//        int m = bookDao.deleteBook(4);
+//        Assert.assertTrue(m == 1);
+//    }
 
     @Test
     public void updateBook() {
@@ -43,7 +43,7 @@ public class BookDaoImplTest {
 
     @Test
     public void loadBook() {
-        Book b = bookDao.loadBook(4);
+        Book b = bookDao.loadBook(6);
         System.out.println(b);
         Assert.assertTrue(b != null);
     }
