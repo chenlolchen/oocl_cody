@@ -1,4 +1,4 @@
-package com.oocl.producer.xml.impl;
+package com.oocl.producer.xml;
 
 
 import com.oocl.producer.pojo.Book;

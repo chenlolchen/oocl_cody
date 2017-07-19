@@ -1,14 +1,13 @@
 package com.oocl.producer.xml.impl;
 
 import com.oocl.producer.pojo.Book;
+import com.oocl.producer.xml.BooksHandler;
 import com.oocl.producer.xml.XmlAction;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.FileWriter;

@@ -7,23 +7,25 @@ import com.oocl.producer.xml.XmlAction;
 import com.oocl.producer.xml.impl.XmlActionImpl;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;
-import org.json.JSONObject;
 
 import javax.jms.*;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
  * Created by CHENCO7 on 7/19/2017.
  */
-public class PtpProducer {
-    private XmlAction xmlAction;
+public class PtpProducer implements Runnable {
+    private int start;
+    private int end;
+    private List<Book> list;
 
-    public PtpProducer(){
-        this.xmlAction = new XmlActionImpl();
+    public PtpProducer(int start, int end, List<Book> list){
+        this.list = list;
+        this.start = start;
+        this.end = end;
     }
 
-    public void start(){
+    public void run() {
         try {
             ConnectionFactory factory = new ActiveMQConnectionFactory("tcp://localhost:61616");
             Destination queue = new ActiveMQQueue("chen_queue");
@@ -32,17 +34,15 @@ public class PtpProducer {
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             MessageProducer producer = session.createProducer(queue);
 
-            List<Book> bookList = xmlAction.readData();
-            for (Book book : bookList){
+            for(int i = start; i < end; i++){
                 ObjectMapper mapper = new ObjectMapper();
                 try {
-                    String str = mapper.writeValueAsString(book);
+                    String str = mapper.writeValueAsString(list.get(i));
                     TextMessage message = session.createTextMessage(str.toString());
                     producer.send(message);
                 } catch (JsonProcessingException e) {
                     e.printStackTrace();
                 }
-
             }
 
             System.out.println(connection);
