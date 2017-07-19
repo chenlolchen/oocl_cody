@@ -16,7 +16,6 @@ public class BookTest {
         List<Book> bookList = bookAction.initData(10000);
         bookAction.saveDataToFile(bookList);
         List<Book> readData = bookAction.readData();
-//        bookAction.saveDataToDB(readData, 10000, 8); // 8应该是根据电脑的核数大小来决定
         bookAction.saveBatchDataToDB(readData);
     }
 }

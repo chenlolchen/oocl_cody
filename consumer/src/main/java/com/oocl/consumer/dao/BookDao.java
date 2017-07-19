@@ -1,6 +1,7 @@
-package com.oocl.book_store.dao;
+package com.oocl.consumer.dao;
 
-import com.oocl.book_store.pojo.Book;
+
+import com.oocl.consumer.pojo.Book;
 
 import java.util.List;
 

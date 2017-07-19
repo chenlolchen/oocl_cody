@@ -14,7 +14,7 @@ public interface BookAction {
 
     List<Book> readData();
 
-    void saveDataToDB(List<Book> bookList, int dataNumber, int threadNumber);
+//    void saveDataToDB(List<Book> bookList, int dataNumber, int threadNumber);
 
     void saveBatchDataToDB(List<Book> readData);
 }

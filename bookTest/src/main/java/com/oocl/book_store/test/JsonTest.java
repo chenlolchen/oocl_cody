@@ -15,7 +15,7 @@ import java.util.List;
 public class JsonTest {
     public static void main(String[] args) throws IOException {
         BookAction bookAction = new BookActionImpl();
-        List<Book> bookList = bookAction.initData(10);
+        List<Book> bookList = bookAction.initData(20);
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(new FileOutputStream("book.json"), bookList);
     }

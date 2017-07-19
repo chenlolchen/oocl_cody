@@ -50,22 +50,22 @@ public class BookActionImpl implements BookAction {
         return list;
     }
 
-    public void saveDataToDB(List<Book> bookList, int dataNumber, int threadNumber){
-        int start = 0;
-        int blockSize = dataNumber / threadNumber;
-        int end = blockSize;
-        DBWriteThread dbThread;
-        for(int i = 0; i < threadNumber - 1; i++){
-            dbThread = new DBWriteThread(start, end, bookList);
-            new Thread(dbThread).start();
-            start += blockSize;
-            end += blockSize;
-        }
-
-        //处理最后一个模块
-        dbThread = new DBWriteThread(start, dataNumber, bookList);
-        new Thread(dbThread).start();
-    }
+//    public void saveDataToDB(List<Book> bookList, int dataNumber, int threadNumber){
+//        int start = 0;
+//        int blockSize = dataNumber / threadNumber;
+//        int end = blockSize;
+//        DBWriteThread dbThread;
+//        for(int i = 0; i < threadNumber - 1; i++){
+//            dbThread = new DBWriteThread(start, end, bookList);
+//            new Thread(dbThread).start();
+//            start += blockSize;
+//            end += blockSize;
+//        }
+//
+//        //处理最后一个模块
+//        dbThread = new DBWriteThread(start, dataNumber, bookList);
+//        new Thread(dbThread).start();
+//    }
 
     public void saveBatchDataToDB(List<Book> readData) {
         bookDao.batchAddBook(readData);

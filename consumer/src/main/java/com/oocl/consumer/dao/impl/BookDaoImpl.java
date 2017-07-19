@@ -1,8 +1,9 @@
-package com.oocl.book_store.dao.impl;
+package com.oocl.consumer.dao.impl;
 
-import com.oocl.book_store.dao.BookDao;
-import com.oocl.book_store.pojo.Book;
-import com.oocl.book_store.util.DBUtil;
+
+import com.oocl.consumer.dao.BookDao;
+import com.oocl.consumer.pojo.Book;
+import com.oocl.consumer.util.DBUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class BookDaoImpl implements BookDao {
             connection = DBUtil.createConnectionWithDataSource();
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, book.getName());
-            preparedStatement.setDate(2, new java.sql.Date(book.getPublishDate().getTime()));
+            preparedStatement.setDate(2, new Date(book.getPublishDate().getTime()));
             preparedStatement.setString(3, book.getAuthor());
             preparedStatement.setDouble(4, book.getPrice());
             preparedStatement.setBoolean(5, book.isNewBook());
@@ -149,7 +150,7 @@ public class BookDaoImpl implements BookDao {
             for (int i = 0; i < list.size(); i++) {
                 Book b = list.get(i);
                 pst.setString(1, b.getName());
-                pst.setDate(2, new java.sql.Date(b.getPublishDate().getTime()));
+                pst.setDate(2, new Date(b.getPublishDate().getTime()));
                 pst.setString(3, b.getAuthor());
                 pst.setDouble(4, b.getPrice());
                 pst.setBoolean(5, b.isNewBook());

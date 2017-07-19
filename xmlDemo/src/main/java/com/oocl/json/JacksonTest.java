@@ -17,8 +17,8 @@ public class JacksonTest {
         c.setAddress(a);
         a.setCustomer(c);
         ObjectMapper mapper = new ObjectMapper();
-//        mapper.writeValue(new FileOutputStream("customer.json"), c);
-        Customer customer = mapper.readValue(new FileInputStream("customer.json"), Customer.class);
-        System.out.println(customer);
+        mapper.convertValue(c, Customer.class);
+//        Customer customer = mapper.readValue(new FileInputStream("customer.json"), Customer.class);
+//        System.out.println(customer);
     }
 }
