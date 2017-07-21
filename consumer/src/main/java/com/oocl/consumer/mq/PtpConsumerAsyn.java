@@ -10,7 +10,9 @@ import org.json.JSONObject;
 
 import javax.jms.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by CHENCO7 on 7/19/2017.
@@ -37,9 +39,13 @@ public class PtpConsumerAsyn {
                 public void onMessage(Message message) {
                     TextMessage msg = (TextMessage) message;
                     try {
-                        ObjectMapper mapper = new ObjectMapper();
-                        Book book = mapper.readValue(msg.getText(), Book.class);
-                        bookDao.addBook(book);
+                        List<Book> bookList = new ArrayList<Book>();
+                        for(int i = 0; i < 100; i++){
+                            ObjectMapper mapper = new ObjectMapper();
+                            Book book = mapper.readValue(msg.getText(), Book.class);
+                            bookList.add(book);
+                        }
+                        bookDao.batchAddBook(bookList);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
