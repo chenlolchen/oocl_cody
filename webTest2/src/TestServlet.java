@@ -8,12 +8,13 @@ import java.io.IOException;
 /**
  * Created by CHENCO7 on 7/24/2017.
  */
-@WebServlet(urlPatterns = {"/ts","/ts1"})
+@WebServlet(name = "TestServlet")
 public class TestServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("test  ...");
     }
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
 }
