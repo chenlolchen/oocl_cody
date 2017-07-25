@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  */
 public class RegularUtil {
     public static final String DATE = "^((?:19|20)\\d\\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$";
-    public static final String SEX = "0|1";
+    public static final String SEX = "false|true";
     public static final String SALARY = "^[0-9]+([.]\\d{1,2})?$";
 
     public static boolean regularCheck(String text, String compileText){

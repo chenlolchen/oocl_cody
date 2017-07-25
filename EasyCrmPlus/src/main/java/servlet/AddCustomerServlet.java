@@ -3,6 +3,7 @@ package servlet;
 import pojo.Customer;
 import service.CustomerManager;
 import service.impl.CustomerManagerFactory;
+import util.RegularUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,7 +40,15 @@ public class AddCustomerServlet extends HttpServlet{
         String cbirth = req.getParameter("birth");
         String[] cfavs = req.getParameterValues("favs");
         // 校验
-        // regular
+        if(!RegularUtil.regularCheck(csex, RegularUtil.SEX)){
+            req.getRequestDispatcher("error.jsp").forward(req, resp);
+        }
+        if(!RegularUtil.regularCheck(cbirth, RegularUtil.DATE)){
+            req.getRequestDispatcher("error.jsp").forward(req, resp);
+        }
+        if(!RegularUtil.regularCheck(csal, RegularUtil.SALARY)){
+            req.getRequestDispatcher("error.jsp").forward(req, resp);
+        }
 
         // 类型转换
         boolean sex = Boolean.parseBoolean(csex);

@@ -15,14 +15,14 @@
         <input type="radio" value="false" name="sex"/>女
     </c:if>
     <c:if test="${customer.sex == false}">
-        <input type="radio" name="sex" value="true"/>
+        <input type="radio" name="sex" value="true"/>男
         <input type="radio" value="false" name="sex" checked="checked"/>女
     </c:if>
     <br/>
 
     favs:<input type="checkbox" value="basket" name="favs">篮球
     <input type="checkbox" value="football" name="favs">足球
-    <input type="submit" value="注册">
+    <input type="submit" value="更新">
 </form>
 </body>
 </html>
