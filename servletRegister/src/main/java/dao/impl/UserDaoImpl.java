@@ -60,4 +60,55 @@ public class UserDaoImpl implements UserDao {
         }
         return user;
     }
+
+    public User loadUser2(String name) {
+        String sql = "select * from users where name = ?";
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet rs = null;
+        User user = null;
+        try {
+            connection = DBUtil.createConnectionWithDataSource();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, name);
+            rs = preparedStatement.executeQuery();
+            if (rs.next()){
+                user = new User();
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setSalary(rs.getDouble("salary"));
+                user.setBirth(rs.getDate("birth"));
+                user.setSex(rs.getBoolean("sex"));
+                user.setAvatar(rs.getBytes("avatar"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(connection, preparedStatement, rs);
+        }
+        return user;
+    }
+
+    public int addUser2(User user) {
+        String sql = "insert into users(id, name, salary, birth, sex, avatar) values(seq01.nextval, ?, ?, ?, ?, ?)";
+        PreparedStatement preparedStatement = null;
+        Connection connection = null;
+        int m = 0;
+        try {
+            connection = DBUtil.createConnectionWithDataSource();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setDouble(2, user.getSalary());
+            preparedStatement.setDate(3, new java.sql.Date(user.getBirth().getTime()));
+            preparedStatement.setBoolean(4, user.getSex());
+            preparedStatement.setBytes(5, user.getAvatar());
+            m = preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(connection, preparedStatement, null);
+        }
+        return m;
+    }
 }

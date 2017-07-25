@@ -8,4 +8,5 @@ import pojo.User;
 public interface UserService {
     int addUser(String name,String birth, String salary, String sex);
     User loadUser(String name);
+    int addUser2(String name,String birth, String salary, String sex, byte[] avatar);
 }

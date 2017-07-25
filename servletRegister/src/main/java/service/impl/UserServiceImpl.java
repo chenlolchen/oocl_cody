@@ -43,4 +43,22 @@ public class UserServiceImpl implements UserService{
     public User loadUser(String name) {
         return userDao.loadUser(name);
     }
+
+    public int addUser2(String name, String birth, String salary, String sex, byte[] avatar) {
+        User user = new User();
+        user.setName(name);
+        user.setSalary(Double.valueOf(salary));
+        user.setSex(Boolean.valueOf(sex));
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = format.parse(birth);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        user.setBirth(date);
+        user.setAvatar(avatar);
+
+        return userDao.addUser2(user);
+    }
 }

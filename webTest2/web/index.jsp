@@ -11,6 +11,7 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+  <% String name = "aa"; %>
+  ${ name }
   </body>
 </html>

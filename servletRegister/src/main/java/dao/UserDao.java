@@ -8,4 +8,6 @@ import pojo.User;
 public interface UserDao {
     int addUser(User user);
     User loadUser(String name);
+    int addUser2(User user);
+    User loadUser2(String username);
 }
