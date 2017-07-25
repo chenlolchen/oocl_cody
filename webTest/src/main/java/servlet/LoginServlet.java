@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/lll")
+@WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
         List<User> us=new ArrayList<User>();
         for(int i=0;i<10;i++){
             User uu=new User("John"+i, i + "PP");
-            uu.setSal(65.84);
+            uu.setSal(11254765.84);
             uu.setBirth(new Date());
             uu.setSex(true);
             us.add(uu);

@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 /**
  * Created by CHENCO7 on 7/24/2017.
  */
-@WebServlet(urlPatterns = {"/login"})
+@WebServlet(urlPatterns = {"/lll"})
 public class Login extends HttpServlet {
 
     @Override

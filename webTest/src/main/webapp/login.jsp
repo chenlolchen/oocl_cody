@@ -21,5 +21,9 @@
     <c:forEach items="${us}" var="u">
         ${u.uname}, ${u.password}
     </c:forEach>
+
+    <form action="close">
+        <button>注销</button>
+    </form>
 </body>
 </html>
