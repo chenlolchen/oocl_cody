@@ -93,6 +93,7 @@ public class UserDaoImpl implements UserDao {
         String sql = "insert into users(id, name, salary, birth, sex, avatar) values(seq01.nextval, ?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = null;
         Connection connection = null;
+        System.out.println("ffffffffffffffffffffff");
         int m = 0;
         try {
             connection = DBUtil.createConnectionWithDataSource();
@@ -102,6 +103,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setDate(3, new java.sql.Date(user.getBirth().getTime()));
             preparedStatement.setBoolean(4, user.getSex());
             preparedStatement.setBytes(5, user.getAvatar());
+            System.out.println(user.getAvatar() + " =========== ");
             m = preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (Exception e) {

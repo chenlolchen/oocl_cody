@@ -33,6 +33,7 @@ public class AddCustomerServlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        boolean isError = false;
         // 接参
         String cname = req.getParameter("name");
         String csex = req.getParameter("sex");
@@ -40,6 +41,10 @@ public class AddCustomerServlet extends HttpServlet{
         String cbirth = req.getParameter("birth");
         String[] cfavs = req.getParameterValues("favs");
         // 校验
+        if(cname.trim().length() < 3){
+            req.setAttribute("ename", "名字错误");
+            isError = true;
+        }
         if(!RegularUtil.regularCheck(csex, RegularUtil.SEX)){
             req.getRequestDispatcher("error.jsp").forward(req, resp);
         }
@@ -48,6 +53,13 @@ public class AddCustomerServlet extends HttpServlet{
         }
         if(!RegularUtil.regularCheck(csal, RegularUtil.SALARY)){
             req.getRequestDispatcher("error.jsp").forward(req, resp);
+        }
+        if (isError){
+            req.setAttribute("name", cname);
+            req.setAttribute("sal", csal);
+            req.setAttribute("birth", cbirth);
+            req.getRequestDispatcher("regist.jsp").forward(req, resp);
+            return;
         }
 
         // 类型转换

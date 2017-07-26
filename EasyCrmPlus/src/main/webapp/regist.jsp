@@ -12,9 +12,9 @@
 </head>
 <body>
     <form method="post" action="add">
-        name: <input type="text" name="name"><br>
-        sal: <input type="number" name="sal"><br>
-        birth: <input type="date" name="birth"><br>
+        name: <input type="text" name="name" value="${name}">${ename}<br>
+        sal: <input type="number" name="sal" value="${sal}">${esal}<br>
+        birth: <input type="date" name="birth" value="${birth}"><br>
         sex:<input type="radio" name="sex" value="true" checked="checked"/>男
         <input type="radio" value="false" name="sex"/>女<br/>
         favs:<input type="checkbox" value="basket" checked="checked" name="favs">篮球

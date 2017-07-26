@@ -47,10 +47,11 @@ public class UserServiceImpl implements UserService{
     public int addUser2(String name, String birth, String salary, String sex, byte[] avatar) {
         User user = new User();
         user.setName(name);
-        user.setSalary(Double.valueOf(salary));
+//        user.setSalary(Double.valueOf(salary));
         user.setSex(Boolean.valueOf(sex));
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
+        System.out.println("dddddddddddddddddddddd");
         try {
             date = format.parse(birth);
         } catch (ParseException e) {
