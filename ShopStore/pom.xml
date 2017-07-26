@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.oocl</groupId>
-  <artifactId>EasyCrmPlus</artifactId>
+  <artifactId>shopstore</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>EasyCrmPlus Maven Webapp</name>
+  <name>shopstore Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
@@ -58,8 +58,8 @@
       <version>1.4</version>
     </dependency>
     <!--<dependency>-->
-    <!--<groupId>javax.servlet</groupId>-->
-    <!--<artifactId>javax.servlet-api</artifactId>-->
+    <!--<groupId>javax.shop_store.servlet</groupId>-->
+    <!--<artifactId>javax.shop_store.servlet-api</artifactId>-->
     <!--<version>3.1.0</version>-->
     <!--</dependency>-->
     <dependency>
@@ -78,8 +78,9 @@
       <artifactId>log4j</artifactId>
       <version>1.2.17</version>
     </dependency>
+
   </dependencies>
   <build>
-    <finalName>EasyCrmPlus</finalName>
+    <finalName>shopstore</finalName>
   </build>
 </project>

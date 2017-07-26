@@ -12,6 +12,7 @@ public class Customer {
     private boolean sex;
     private Date birth;
     private String[] favs;
+    private String password;
 
     public Customer() {
     }
@@ -23,6 +24,14 @@ public class Customer {
         this.sex = sex;
         this.birth = birth;
         this.favs = favs;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getId() {

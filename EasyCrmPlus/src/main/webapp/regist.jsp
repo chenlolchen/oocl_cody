@@ -11,7 +11,7 @@
     <title>Regist</title>
 </head>
 <body>
-    <form method="post" action="add">
+    <form method="post" action="sec/add">
         name: <input type="text" name="name" value="${name}">${ename}<br>
         sal: <input type="number" name="sal" value="${sal}">${esal}<br>
         birth: <input type="date" name="birth" value="${birth}"><br>

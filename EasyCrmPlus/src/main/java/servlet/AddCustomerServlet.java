@@ -18,7 +18,7 @@ import java.util.Date;
 /**
  * Created by CHENCO7 on 7/25/2017.
  */
-@WebServlet(urlPatterns = "/add")
+@WebServlet(urlPatterns = "/sec/add")
 public class AddCustomerServlet extends HttpServlet{
     private CustomerManager manager;
 
@@ -79,8 +79,10 @@ public class AddCustomerServlet extends HttpServlet{
         // 调用业务
         int m = manager.addCustomer(customer);
         if (m > 0){
-            resp.sendRedirect("list");
+            System.out.println("111111");
+            resp.sendRedirect("sec/list");
         }else {
+            System.out.println("22222222");
             req.getRequestDispatcher("error.jsp").forward(req, resp);
         }
     }

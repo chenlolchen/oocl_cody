@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by CHENCO7 on 7/25/2017.
  */
-@WebServlet(urlPatterns = "/list")
+@WebServlet(urlPatterns = "/sec/list")
 public class ListAllCustomerServlet extends HttpServlet {
     private CustomerManager manager;
 
@@ -27,7 +27,7 @@ public class ListAllCustomerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Customer> customers = manager.findAllCustomers();
         req.setAttribute("customers", customers);
-        req.getRequestDispatcher("list.jsp").forward(req, resp);
+        req.getRequestDispatcher("../list.jsp").forward(req, resp);
     }
 
     @Override
