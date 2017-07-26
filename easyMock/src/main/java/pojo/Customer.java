@@ -7,6 +7,14 @@ public class Customer {
     private String name;
     private String password;
 
+    public Customer() {
+    }
+
+    public Customer(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
     public String getName() {
         return name;
     }

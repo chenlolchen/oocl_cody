@@ -4,6 +4,7 @@ import org.easymock.*;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import pojo.Customer;
 import service.CustomerServiceImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -43,6 +44,7 @@ public class LoginServletTest extends EasyMockSupport {
     public void testDoGet(){
         expect(request.getParameter("uname")).andReturn("john");
         expect(request.getParameter("psd")).andReturn("123");
+        expect(service.loadCustomer("john","123")).andReturn(new Customer("john","123"));
         expect(request.getRequestDispatcher("suc.jsp")).andReturn(requestDispatcher);
         try {
             requestDispatcher.forward(request, response);
@@ -58,7 +60,7 @@ public class LoginServletTest extends EasyMockSupport {
         replayAll();
 
         // 用户名密码验证
-        service.loadCustomer(request.getParameter("uname"), request.getParameter("psd"));
+//        service.loadCustomer(request.getParameter("uname"), request.getParameter("psd"));
 
         try {
             servlet.doGet(request, response);
@@ -80,6 +82,7 @@ public class LoginServletTest extends EasyMockSupport {
 
         expect(request.getParameter("uname")).andReturn("john");
         expect(request.getParameter("psd")).andReturn("1234");
+        expect(service.loadCustomer("john","1234")).andReturn(null);
         expect(request.getRequestDispatcher("login.jsp")).andReturn(requestDispatcher);
         try {
             requestDispatcher.forward(request, response);

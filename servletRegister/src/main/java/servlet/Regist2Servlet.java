@@ -44,24 +44,38 @@ public class Regist2Servlet extends HttpServlet {
         String sex = "";
         byte[] avatar = null;
 
-        DiskFileItemFactory factory = new DiskFileItemFactory(20 * 1024, new File("D:\\bin\\temp"));
-        String path = getServletContext().getRealPath("/ff.png");
+        DiskFileItemFactory factory = new DiskFileItemFactory(100 * 1024, new File("D:\\bin\\temp"));
         ServletFileUpload upload = new ServletFileUpload(factory);
-        upload.setFileSizeMax(100 * 1024); // 50k 文件大小
+        upload.setFileSizeMax(150 * 1024); // 50k 文件大小
+
         try {
             List<FileItem> itemList = upload.parseRequest(req);
             for (FileItem item : itemList){
                 if(item.isFormField()){
                     System.out.println(item.getFieldName() + " ... " + item.getString());
+                    if ("name".equals(item.getFieldName())) {
+                        name = item.getString("utf-8");
+                    }
+                    if ("salary".equals(item.getFieldName())) {
+                        salary = item.getString("utf-8");
+                    }
+                    if ("birth".equals(item.getFieldName())) {
+                        birth = item.getString("utf-8");
+                    }
+                    if ("sex".equals(item.getFieldName())) {
+                        sex = item.getString("utf-8");
+                    }
                 }else {
                     System.out.println(item.getName() + " ___ " + item.getSize());
-                    InputStream in = item.getInputStream();
-                    byte[] buf = new byte[50];
-                    FileOutputStream out = new FileOutputStream(path);
+                    byte[] buffer = new byte[512];
                     int len = 0;
-                    while ((len = in.read(buf)) != -1){
-                        out.write(buf, 0 , len);
+                    InputStream in = item.getInputStream();
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+                    while ((len = in.read(buffer)) != -1) {
+                        out.write(buffer, 0, len);
                     }
+                    out.flush();
+                    avatar = out.toByteArray();
                     in.close();
                     out.close();
                 }
@@ -71,42 +85,7 @@ public class Regist2Servlet extends HttpServlet {
             e.printStackTrace();
         }
 
-//        try {
-//            List<FileItem> list = upload.parseRequest(req);
-//            for (FileItem item : list){
-//                if(item.isFormField()){
-//                    if (item.isFormField()) {
-//                        if ("name".equals(item.getFieldName())) {
-//                            name = item.getString("utf-8");
-//                        }
-//                        if ("salary".equals(item.getFieldName())) {
-//                            salary = item.getString("utf-8");
-//                        }
-//                        if ("birth".equals(item.getFieldName())) {
-//                            birth = item.getString("utf-8");
-//                        }
-//                        if ("sex".equals(item.getFieldName())) {
-//                            sex = item.getString("utf-8");
-//                        }
-//                    }else{
-//                        byte[] buffer = new byte[512];
-//                        int len = -1;
-//                        InputStream in = item.getInputStream();
-//                        ByteArrayOutputStream out = new ByteArrayOutputStream();
-//                        while ((len = in.read(buffer)) != -1) {
-//                            out.write(buffer, 0, len);
-//                        }
-//                        avatar = out.toByteArray();
-//                        in.close();
-//                        out.close();
-//                    }
-//                }
-//            }
+        userService.addUser2(name, birth, salary, sex, avatar);
 
-            userService.addUser2(name, birth, salary, sex, avatar);
-
-//        } catch (FileUploadException e) {
-//            e.printStackTrace();
-//        }
     }
 }
