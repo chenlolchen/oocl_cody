@@ -50,4 +50,14 @@ public class Area {
     public void setCityId(String cityId) {
         this.cityId = cityId;
     }
+
+    @Override
+    public String toString() {
+        return "Area{" +
+                "id=" + id +
+                ", areaId='" + areaId + '\'' +
+                ", area='" + area + '\'' +
+                ", cityId='" + cityId + '\'' +
+                '}';
+    }
 }

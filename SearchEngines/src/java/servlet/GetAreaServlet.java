@@ -25,11 +25,15 @@ public class GetAreaServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("utf-8");
-        System.out.println("阿什顿");
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        resp.setHeader("Content-type", "text/html;charset=UTF-8");
         String areaName = req.getParameter("areaName");
+        areaName = new String(areaName.getBytes("ISO-8859-1"), "UTF-8");
+
         List<Area> areaList = areaManager.searchAreaByName(areaName);
+
         PrintWriter writer = resp.getWriter();
-        writer.write(JsonUtil.toJsonString(areaList));
+        writer.write( JsonUtil.toJsonString(areaList));
     }
 }

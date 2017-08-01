@@ -16,9 +16,8 @@ import java.util.List;
 public class AreaDaoImpl implements AreaDao {
 
     public List<Area> searchAreaByName(String areaName) {
-        System.out.println(areaName);
         List<Area> list = new ArrayList<Area>();
-        String sql = "select * from areas where area like ?";
+        String sql = "select * from areas where area like ? AND ROWNUM <= 5";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
