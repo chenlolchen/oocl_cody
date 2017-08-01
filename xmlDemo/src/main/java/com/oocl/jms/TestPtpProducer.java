@@ -17,7 +17,7 @@ public class TestPtpProducer {
         // 没有使用事务
 //        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         // 使用事务
-        Session session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
+        Session session = connection.createSession(true, Session.CLIENT_ACKNOWLEDGE);
 
         MessageProducer producer = session.createProducer(queue);
         TextMessage message = session.createTextMessage("hello I am cody");

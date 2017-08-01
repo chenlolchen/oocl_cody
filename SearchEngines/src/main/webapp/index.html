@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Engines</title>
+</head>
+<body>
+<input type="text" id="searchInput" oninput="searchOnServer(event)">
+
+<script type="text/javascript">
+    var btn = document.getElementById('send');
+
+    btn.onclick = function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://localhost:3000/users");
+        xhr.onreadystatechange = function () {
+            if (xhr.status == 200 && xhr.readyState == 4) {
+                var users = JSON.parse(xhr.responseText);
+                console.log(users[0].name);
+            }
+        };
+        xhr.send(null); // 发送给服务器
+    };
+
+    function searchOnServer(event) {
+        console.log(event.target.value);
+    }
+</script>
+</body>
+</html>

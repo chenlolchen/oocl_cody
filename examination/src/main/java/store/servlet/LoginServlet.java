@@ -6,6 +6,7 @@ import store.service.CustomerManager;
 import store.service.impl.CustomerManagerFactory;
 
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,11 +29,14 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("get....");
+//        getServletConfig(),getServletContext().getRealPath()
         doPost(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("post....");
         String name = req.getParameter("name");
         String password = req.getParameter("password");
         Customer customer = manager.loadCustomer(name, password);
