@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Engines</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+
+    <style type="text/css">
+        ul li{
+            list-style-type: none;
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            cursor: default;
+        }
+
+        ul li:hover{
+            background-color: beige;
+        }
+        ul li:last-child{
+            border-bottom: 1px solid #ccc;
+        }
+
+        ul{
+            margin: 0;
+            padding: 0;
+            width: 173px;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="searchInput">
+<ul id="root">
+</ul>
+
+<script type="text/javascript">
+    $("#searchInput").on("keyup", function () {
+        $('ul').empty();
+        var areaName = $(this).val();
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/searchEngines/getArea?areaName=" + areaName,
+            dataType: "json"
+        }).done(function (data) {
+            data.forEach((item)=>{
+                $('ul').append($("<li onclick='selectArea($(this))'></li>").text(item.area));
+            })
+        });
+    });
+
+    var selectArea = function (node) {
+        $("#searchInput").val(node.text());
+        $("ul").empty();
+    }
+</script>
+</body>
+</html>

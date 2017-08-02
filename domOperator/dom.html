@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dom</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+<button id="loadBtn">更新数据</button>
+<table id="usersTable">
+
+</table>
+<script type="text/javascript" src=""></script>
+<script type="text/javascript">
+
+    $(function () {
+        $("#loadBtn").on("click", function () {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:3000/users"
+            }).done(function (data) {
+                renderTable(data);
+            })
+        });
+    });
+
+    var renderTable = function (data) {
+        var table = $("#usersTable");
+        table.empty();
+        data.forEach((item, index)=> {
+            var tr = $("<tr></tr>");
+            tr.appendTo(table);
+            $("<td></td>").text(item.id).appendTo(tr);
+            $("<td></td>").text(item.name).appendTo(tr);
+            $("<td></td>").text(item.age).appendTo(tr);
+            $("<td></td>").html("<button id='" + item.id + "'>删除</button>").appendTo(tr);
+        });
+        $("td>button").bind("click", function () {
+            deleteById(this);
+        })
+    };
+
+    var deleteById = function (btn) {
+        var deleteId = $(btn).attr("id");
+        $.ajax({
+            type: "DELETE",
+            url: "http://localhost:3000/users/" + deleteId,
+        }).done(function (data) {
+            $(btn).parent().parent().remove();
+        })
+    }
+</script>
+
+</body>
+</html>
