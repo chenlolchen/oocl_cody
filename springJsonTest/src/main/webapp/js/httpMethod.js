@@ -52,4 +52,4 @@ function HttpMethod(uri_prefix) {
     }
 }
 
-// window.httpMethod = new HttpMethod("/springJsonTest");
+window.httpMethod = new HttpMethod("/springJsonTest");
