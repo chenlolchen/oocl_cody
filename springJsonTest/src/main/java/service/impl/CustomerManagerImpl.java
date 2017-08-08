@@ -25,16 +25,6 @@ public class CustomerManagerImpl implements CustomerManager {
         return customers;
     }
 
-    public Customer deleteCustomer(Customer customer){
-        for (int i = 0; i < customers.size(); i++){
-            if(customers.get(i).getId().equals(customer.getId())){
-                customers.remove(i);
-                return customer;
-            }
-        }
-        return null;
-    }
-
     public Customer updateCustomer(Customer customer){
         for (int i = 0; i < customers.size(); i++){
             if(customers.get(i).getId().equals(customer.getId())){
