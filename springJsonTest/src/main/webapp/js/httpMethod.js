@@ -46,8 +46,10 @@ function HttpMethod(uri_prefix) {
             data: params
         }).done(function (response) {
             successCallback(response);
-        }).fail(function (response) {
-            failCallback(response);
+        }).fail(function () {
+            console.log("http error")
         });
     }
 }
+
+// window.httpMethod = new HttpMethod("/springJsonTest");

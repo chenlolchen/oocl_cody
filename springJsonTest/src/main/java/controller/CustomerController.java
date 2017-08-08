@@ -41,7 +41,7 @@ public class CustomerController {
         return manager.loadCustomerById(id);
     }
 
-    @RequestMapping(value = "customer", method = RequestMethod.PUT, consumes = "application/json")
+    @RequestMapping(value = "customer", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public Customer updateCustomer(@RequestBody Customer customer){
         System.out.println(customer);

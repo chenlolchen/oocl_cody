@@ -94,7 +94,7 @@
         httpMethod.put("customer",JSON.stringify(customer),function (data) {
             operator.updateColumn(data);
             $("#myModal").modal("hide");
-        } )
+        })
     })
 
 </script>

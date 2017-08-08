@@ -1,5 +1,7 @@
 package service.impl;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import service.CustomerManager;
 
 /**
@@ -9,9 +11,8 @@ public class CustomerManagerFactory {
     private static CustomerManager manager;
 
     public static CustomerManager getInstance(){
-        if(manager == null){
-            manager = new CustomerManagerImpl();
-        }
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        manager = context.getBean(CustomerManager.class);
         return manager;
     }
 
