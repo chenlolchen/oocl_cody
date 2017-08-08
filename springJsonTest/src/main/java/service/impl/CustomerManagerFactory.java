@@ -14,4 +14,12 @@ public class CustomerManagerFactory {
         }
         return manager;
     }
+
+//    static {
+//        manager = new CustomerManagerImpl();
+//    }
+//
+//    public static CustomerManager getInstance(){
+//        return manager;
+//    }
 }

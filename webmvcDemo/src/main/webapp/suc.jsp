@@ -11,6 +11,7 @@
     <title>success</title>
 </head>
 <body>
+<% System.out.println("jsp"); %>
     <h1>Hello: ${name}</h1>
     <h1>age: ${age}</h1>
 <form action="test3" method="post">

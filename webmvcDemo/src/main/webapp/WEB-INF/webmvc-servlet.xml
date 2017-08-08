@@ -19,6 +19,17 @@
     <!-- mapping -->
     <!--<bean name="/test" class="controller.TestController"></bean>-->
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/tt2"/>
+            <mvc:mapping path="/demo2"/>
+            <bean class="controller.MyInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    </bean>
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/"/>
         <property name="suffix" value=".jsp"/>

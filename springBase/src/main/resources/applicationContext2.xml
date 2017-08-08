@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- <import resource="xxx.xml"/> -->
+
+    <bean id="net1" class="com.oocl.collector.NetCollector">
+        <property name="cname" value="aa"></property>
+        <!--<constructor-arg index="0" value="cccc"></constructor-arg>-->
+        <!--<constructor-arg index="1" value="true"></constructor-arg>-->
+    </bean>
+
+    <bean id="net" class="com.oocl.collector.NetCollector" init-method="init" destroy-method="destroy">
+        <property name="cname" value="chen"></property>
+        <!--<property name="favs1">-->
+            <!--<ref bean="c1"></ref>-->
+            <!--<ref bean="c2"></ref>-->
+        <!--</property>-->
+
+        <!--<property name="favs">-->
+            <!--<list>-->
+                <!--<value>abc</value>-->
+                <!--<value>kkk</value>-->
+            <!--</list>-->
+        <!--</property>-->
+
+        <!--<property name="map">-->
+            <!--<map>-->
+                <!--<entry key="a" value="abc"></entry>-->
+                <!--<entry key="b" value="bbb"></entry>-->
+            <!--</map>-->
+        <!--</property>-->
+    </bean>
+
+    <bean id="collector1" class="com.oocl.collector.UsbCollector" autowire="byName">
+    </bean>
+
+    <bean class="com.oocl.render.LineRender">
+        <property name="analyser" ref="factor"/>
+    </bean>
+
+
+    <!--<bean id="usb" class="com.oocl.collector.UsbCollector"/>-->
+
+
+    <!--<bean id="cluster" class="com.oocl.analyser.ClusterAnalyser">-->
+        <!--<property name="collector" ref="usb"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="factor" class="com.oocl.analyser.FactorAnalyser">-->
+        <!--<property name="collector">-->
+            <!--<bean class="com.oocl.collector.NetCollector"></bean>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+
+
+    <bean id="factor" class="com.oocl.analyser.FactorAnalyser" autowire="byName">
+        <property name="collector" ref="net">
+            <!--&lt;!&ndash;<bean class="com.oocl.collector.NetCollector"></bean>&ndash;&gt;-->
+        </property>
+    </bean>
+
+
+    <!--<bean id="pie" class="com.oocl.render.PieRender">-->
+        <!--<property name="analyser" ref="factor"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="line" class="com.oocl.render.LineRender">-->
+        <!--<property name="analyser" ref="cluster"/>-->
+    <!--</bean>-->
+</beans>

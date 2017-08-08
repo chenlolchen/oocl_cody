@@ -4,6 +4,7 @@ import pojo.Customer;
 import service.CustomerManager;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,6 +13,13 @@ import java.util.UUID;
  */
 public class CustomerManagerImpl implements CustomerManager {
     private final List<Customer> customers = new ArrayList<Customer>();
+
+    public CustomerManagerImpl(){
+        Customer c1 = new Customer(UUID.randomUUID().toString(), "chen", true, 27.61, new Date());
+        Customer c2 = new Customer(UUID.randomUUID().toString(), "asd", false, 74.61, new Date());
+        customers.add(c1);
+        customers.add(c2);
+    }
 
     public Customer addCustomer(Customer customer) {
         synchronized (customers){
@@ -26,25 +34,20 @@ public class CustomerManagerImpl implements CustomerManager {
     }
 
     public Customer updateCustomer(Customer customer){
-        for (int i = 0; i < customers.size(); i++){
-            if(customers.get(i).getId().equals(customer.getId())){
-                customers.remove(i);
-                customers.add(i, customer);
-                return customer;
-            }
+        synchronized (customers){
+            int index = customers.indexOf(customer);
+            customers.set(index, customer);
         }
         return null;
     }
 
-    public Customer deleteCustomerById(String id) {
-        for (int i = 0; i < customers.size(); i++){
-            if(customers.get(i).getId().equals(id)){
-                Customer customer = customers.get(i);
-                customers.remove(i);
-                return customer;
-            }
+    public String deleteCustomerById(String id) {
+        synchronized (customers) {
+            Customer c=new Customer();
+            c.setId(id);
+            customers.remove(c);
         }
-        return null;
+        return "{}";
     }
 
     public Customer loadCustomerById(String id) {

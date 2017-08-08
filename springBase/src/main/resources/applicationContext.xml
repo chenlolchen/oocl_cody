@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--使用autowire应该注意-->
+
+    <bean id="line" class="com.oocl.render.LineRender" autowire="byType">
+
+    </bean>
+
+    <!--首先 FactorAnalyser 里有一个set collector方法,-->
+    <!--然后使用 autowire 的时候会去找容器中具有, collector 的 bean-->
+    <!--这里用byType会报错, 因为有两个不同名字但是类型相同-->
+    <bean id="factor" class="com.oocl.analyser.FactorAnalyser" autowire="byName">
+        <!--<property name="collector" ref="net"></property>-->
+    </bean>
+
+    <bean id="collector" class="com.oocl.collector.NetCollector">
+
+    </bean>
+
+    <bean id="collector1" class="com.oocl.collector.UsbCollector">
+
+    </bean>
+</beans>

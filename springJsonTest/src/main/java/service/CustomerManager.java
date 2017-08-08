@@ -14,7 +14,7 @@ public interface CustomerManager {
 
     Customer updateCustomer(Customer customer);
 
-    Customer deleteCustomerById(String id);
+    String deleteCustomerById(String id);
 
     Customer loadCustomerById(String id);
 }
