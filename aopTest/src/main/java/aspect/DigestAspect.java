@@ -12,10 +12,10 @@ import util.MD5Util;
  */
 @Aspect
 @Component
-public class UserAspect {
+public class DigestAspect {
 
     @Around(value = "execution(* service..login(..))")
-    public Object loginMD5(ProceedingJoinPoint point){
+    public Object loginMD5(ProceedingJoinPoint point) {
         System.out.println("in login .. ");
         Object o = null;
         try {
@@ -30,17 +30,21 @@ public class UserAspect {
     }
 
     @Around(value = "execution(* service.UserService.register(..))")
-    public Object registerMD5(ProceedingJoinPoint point){
+    public Object registerMD5(ProceedingJoinPoint point) {
         System.out.println("in register .. ");
         Object o = null;
         try {
             User user = (User) point.getArgs()[0];
             String password = user.getPassword();
             user.setPassword(MD5Util.getMD5(password));
-            o = point.proceed();
+            o = point.proceed(new Object[]{user});
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
         return o;
+    }
+
+    private String process(String s){
+        return null;
     }
 }
