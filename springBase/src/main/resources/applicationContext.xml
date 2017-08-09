@@ -7,21 +7,25 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 基于注解方案 -->
-    <context:component-scan base-package="com.oocl.analyser, com.oocl.collector, com.oocl.render"/>
+    <context:component-scan base-package="com.oocl.analyser, com.oocl.collector, com.oocl.render, com.oocl.service, com.oocl.aspect"/>
 
-    <bean id="ws" class="com.oocl.service.impl.WorkServiceImpl"/>
-    <bean id="logAspect" class="com.oocl.aspect.LogAspect"/>
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
-    <!-- weaving -->
-    <aop:config>
-        <aop:aspect ref="logAspect">
-            <!-- execution -->
-            <aop:pointcut id="p" expression="execution(* com.oocl.service.WorkService.work(String))"/>
-            <aop:before method="logBefore" pointcut-ref="p"></aop:before>
-            <aop:after method="logAfter" pointcut-ref="p"></aop:after>
-            <aop:around method="logAround" pointcut-ref="p"></aop:around>
-        </aop:aspect>
-    </aop:config>
+
+    <!-- aspect 配置方式 -->
+    <!--<bean id="ws" class="com.oocl.service.impl.WorkServiceImpl"/>-->
+    <!--<bean id="logAspect" class="com.oocl.aspect.LogAspect"/>-->
+
+    <!--&lt;!&ndash; weaving &ndash;&gt;-->
+    <!--<aop:config>-->
+        <!--<aop:aspect ref="logAspect">-->
+            <!--&lt;!&ndash; execution &ndash;&gt;-->
+            <!--<aop:pointcut id="p" expression="execution(* com.oocl.service.WorkService.work(String))"/>-->
+            <!--<aop:before method="logBefore" pointcut-ref="p"></aop:before>-->
+            <!--<aop:after method="logAfter" pointcut-ref="p"></aop:after>-->
+            <!--<aop:around method="logAround" pointcut-ref="p"></aop:around>-->
+        <!--</aop:aspect>-->
+    <!--</aop:config>-->
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
