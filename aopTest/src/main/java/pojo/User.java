@@ -1,9 +1,17 @@
 package pojo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 /**
  * Created by CHENCO7 on 8/9/2017.
  */
+//@Entity
+//@Table(name = "users")
 public class User {
+//    @Id
     private String id;
     private String name;
     private String password;

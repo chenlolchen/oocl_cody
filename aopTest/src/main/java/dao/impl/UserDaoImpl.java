@@ -5,7 +5,10 @@ import org.springframework.stereotype.Repository;
 import pojo.User;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,6 +24,17 @@ public class UserDaoImpl implements UserDao {
     private EntityManagerFactory factory;
 
     public boolean register(User user) {
+        boolean flag = false;
+        EntityManager manager = factory.createEntityManager();
+        EntityTransaction tx = manager.getTransaction();
+        tx.begin();
+
+        manager.persist(user);
+
+        tx.commit();
+        flag = true;
+
+        return flag;
 //        try {
 //            String sql = "insert into users(id, name, password, age) values(?, ?, ?, ?)";
 //            Connection connection = null;
@@ -44,40 +58,14 @@ public class UserDaoImpl implements UserDao {
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        }
-        return false;
     }
 
     public User login(String name, String password) {
-//        System.out.println(password);
-//        try {
-//            String sql = "select * from users where name = ? and password = ?";
-//
-//            Connection connection = null;
-//            PreparedStatement preparedStatement = null;
-//            ResultSet rs = null;
-//            try {
-//                connection = dataSource.getConnection();
-//                preparedStatement = connection.prepareStatement(sql);
-//                preparedStatement.setString(1, name);
-//                preparedStatement.setString(2, password);
-//                rs = preparedStatement.executeQuery();
-//                if (rs.next()) {
-//                    User user = new User();
-//                    user.setId(rs.getString("id"));
-//                    user.setName(rs.getString("name"));
-//                    user.setAge(rs.getInt("age"));
-//                    return user;
-//                }
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            } finally {
-//                rs.close();
-//                preparedStatement.close();
-//                connection.close();
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-        return null;
+        EntityManager manager = factory.createEntityManager();
+        Query query = manager.createNativeQuery("select * from users where name = ? and password = ?", User.class);
+        query.setParameter(1, name);
+        query.setParameter(2, password);
+        User user = (User) query.getSingleResult();
+        return user;
     }
 }
