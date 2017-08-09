@@ -19,12 +19,12 @@ public class CustomerManagerImpl implements CustomerManager {
     @Resource
     private CustomerDao customerDao;
 
-    public CustomerManagerImpl(){
+    public CustomerManagerImpl() {
 
     }
 
     public Customer addCustomer(Customer customer) {
-        synchronized (this){
+        synchronized (this) {
             customer.setId(UUID.randomUUID().toString());
             return customerDao.addCustomer(customer);
         }
@@ -34,8 +34,8 @@ public class CustomerManagerImpl implements CustomerManager {
         return customerDao.findAllCustomers();
     }
 
-    public Customer updateCustomer(Customer customer){
-        synchronized (this){
+    public Customer updateCustomer(Customer customer) {
+        synchronized (this) {
             return customerDao.updateCustomer(customer);
         }
     }
