@@ -12,11 +12,11 @@ import javax.annotation.Resource;
  */
 @Service
 public class UserServiceImpl implements UserService {
-    @Resource
+    @Resource(name = "userDaoImpl")
     private UserDao userDao;
 
     public boolean register(User user) {
-        return userDao.Register(user);
+        return userDao.register(user);
     }
 
     public User login(String name, String password) {

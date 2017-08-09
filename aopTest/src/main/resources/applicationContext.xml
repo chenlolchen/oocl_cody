@@ -2,11 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 基于注解方案 -->
-    <context:component-scan base-package="service, dao"/>
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    <context:component-scan base-package="service, dao, aspect"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
@@ -15,11 +17,11 @@
         <property name="password" value="123"></property>
     </bean>
 
-    <bean id="dataSource1" class="org.apache.commons.dbcp.BasicDataSource">
-        <property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
-        <property name="url" value="jdbc:oracle:thin:@//ZHA-ITA077-w7:1521/xe"></property>
-        <property name="username" value="cody"></property>
-        <property name="password" value="123"></property>
-    </bean>
+    <!--<bean id="dataSource1" class="org.apache.commons.dbcp.BasicDataSource">-->
+        <!--<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>-->
+        <!--<property name="url" value="jdbc:oracle:thin:@//ZHA-ITA077-w7:1521/xe"></property>-->
+        <!--<property name="username" value="cody"></property>-->
+        <!--<property name="password" value="123"></property>-->
+    <!--</bean>-->
 
 </beans>

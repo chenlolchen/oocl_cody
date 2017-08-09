@@ -16,10 +16,10 @@ import java.sql.SQLException;
  */
 @Repository
 public class UserDaoImpl implements UserDao {
-    @Resource(name = "dataSource1")
+    @Resource(name = "dataSource")
     private DataSource dataSource;
 
-    public boolean Register(User user) {
+    public boolean register(User user) {
         try {
             String sql = "insert into users(id, name, password, age) values(?, ?, ?, ?)";
             Connection connection = null;
@@ -47,6 +47,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     public User login(String name, String password) {
+        System.out.println(password);
         try {
             String sql = "select * from users where name = ? and password = ?";
 

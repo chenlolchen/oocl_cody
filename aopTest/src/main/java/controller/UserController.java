@@ -2,11 +2,12 @@ package controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import pojo.User;
 import service.UserService;
-import service.impl.UserServiceFactory;
 
+import javax.annotation.Resource;
 import java.util.UUID;
 
 /**
@@ -14,11 +15,8 @@ import java.util.UUID;
  */
 @Controller
 public class UserController {
+    @Resource(name = "userServiceImpl")
     private UserService service;
-
-    public UserController(){
-        service = UserServiceFactory.getInstance();
-    }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(User user){
