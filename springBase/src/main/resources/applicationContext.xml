@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 基于注解方案 -->
+    <context:component-scan base-package="com.oocl.analyser, com.oocl.collector, com.oocl.render"/>
+
+    <bean id="ws" class="com.oocl.service.impl.WorkServiceImpl"/>
+    <bean id="logAspect" class="com.oocl.aspect.LogAspect"/>
+
+    <!-- weaving -->
+    <aop:config>
+        <aop:aspect ref="logAspect">
+            <!-- execution -->
+            <aop:pointcut id="p" expression="execution(* com.oocl.service.WorkService.work(String))"/>
+            <aop:before method="logBefore" pointcut-ref="p"></aop:before>
+            <aop:after method="logAfter" pointcut-ref="p"></aop:after>
+            <aop:around method="logAround" pointcut-ref="p"></aop:around>
+        </aop:aspect>
+    </aop:config>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
+        <property name="url" value="jdbc:oracle:thin:@ITA-031-W7:1521/xe"></property>
+        <property name="username" value="cody"></property>
+        <property name="password" value="123"></property>
+    </bean>
+
+    <bean id="dataSource1" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
+        <property name="url" value="jdbc:oracle:thin:@//ZHA-ITA077-w7:1521/ita3"></property>
+        <property name="username" value="cody"></property>
+        <property name="password" value="123"></property>
+    </bean>
+
+</beans>
