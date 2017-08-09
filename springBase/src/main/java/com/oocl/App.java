@@ -1,7 +1,5 @@
 package com.oocl;
 
-import com.oocl.analyser.Analyser;
-import com.oocl.render.Render;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -11,7 +9,7 @@ import java.sql.SQLException;
 public class App
 {
     public static void main( String[] args ) throws SQLException {
-//        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext3.xml");
+//        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 ////        Render r = (Render) context.getBean("pie");
 ////        r.render();
 ////
@@ -26,7 +24,7 @@ public class App
 //        Analyser analyser = context.getBean(Analyser.class);
 //        analyser.analyse();
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext3.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 //        Render r = context.getBean(Render.class);
 //        r.render();
         DataSource dataSource = (DataSource) context.getBean("dataSource");
