@@ -10,5 +10,6 @@ public class Test {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         WorkService workService = (WorkService) context.getBean("ws");
         workService.work("chen");
+        System.out.println(workService.getClass().getName());
     }
 }
