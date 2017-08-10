@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
 /**
  * Created by CHENCO7 on 8/9/2017.
  */
-public class TestCustomer {
+public class TestCustomer2 {
     public static void main(String[] args) {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("john");
         EntityManager manager = factory.createEntityManager();
