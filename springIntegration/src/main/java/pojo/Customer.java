@@ -4,9 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by CHENCO7 on 8/11/2017.
@@ -86,13 +84,13 @@ public class Customer {
 
     public void updateDefaultAddress(){
         for (Address address : addressList){
-            address.setDefaultAddress(false);
+            address.setIsDefaultAddress(false);
         }
 
         for (Address address : addressList){
             System.out.println(address);
             if(address.getName().equals(getDefaultAddress())){
-                address.setDefaultAddress(true);
+                address.setIsDefaultAddress(true);
                 return;
             }
         }

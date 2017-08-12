@@ -72,6 +72,12 @@ public class TestUser {
     }
 
     @Test
+    public void testComment(){
+        Order order = manager.find(Order.class, "8a5e9d1a5dd42db1015dd42db6c00002");
+        order.getComment().add("comment");
+    }
+
+    @Test
     public void testFindAddress(){
         Query query = manager.createNativeQuery("SELECT * FROM customer WHERE id =:customer_id", Customer.class);
         Customer customer = (Customer) query.setParameter("customer_id", "8a5e9d1a5dd0c091015dd0c095dd0003").getSingleResult();

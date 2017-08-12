@@ -11,7 +11,7 @@ public class Address {
     private String name;
 
     @Column(columnDefinition = "char(2)")
-    private Boolean defaultAddress;
+    private Boolean isDefaultAddress;
 
     public Address() {
     }
@@ -20,9 +20,9 @@ public class Address {
         this.name = name;
     }
 
-    public Address(String name, Boolean defaultAddress) {
+    public Address(String name, Boolean isDefaultAddress) {
         this.name = name;
-        this.defaultAddress = defaultAddress;
+        this.isDefaultAddress = isDefaultAddress;
     }
 
     public String getName() {
@@ -33,19 +33,19 @@ public class Address {
         this.name = name;
     }
 
-    public Boolean getDefaultAddress() {
-        return defaultAddress;
+    public Boolean getIsDefaultAddress() {
+        return isDefaultAddress;
     }
 
-    public void setDefaultAddress(Boolean defaultAddress) {
-        this.defaultAddress = defaultAddress;
+    public void setIsDefaultAddress(Boolean defaultAddress) {
+        this.isDefaultAddress = defaultAddress;
     }
 
     @Override
     public String toString() {
         return "Address{" +
                 "name='" + name + '\'' +
-                ", defaultAddress=" + defaultAddress +
+                ", defaultAddress=" + isDefaultAddress +
                 '}';
     }
 }
