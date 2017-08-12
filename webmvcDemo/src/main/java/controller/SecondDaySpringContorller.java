@@ -42,10 +42,12 @@ public class SecondDaySpringContorller {
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public String upload(String uname, MultipartFile img) throws IOException {
+    public String upload(String uname, MultipartFile img, MultipartFile img1) throws IOException {
         System.out.println(uname);
         System.out.println(img.getOriginalFilename());
         System.out.println(img.getInputStream().available());
+        System.out.println(img1.getOriginalFilename());
+        System.out.println(img1.getInputStream().available());
         return "suc";
     }
 

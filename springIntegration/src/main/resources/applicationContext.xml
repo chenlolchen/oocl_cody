@@ -3,7 +3,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
@@ -11,13 +11,15 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd">
+        http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
+    <task:annotation-driven></task:annotation-driven>
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
     <context:component-scan base-package="service"></context:component-scan>
     <context:component-scan base-package="dao"></context:component-scan>
     <context:component-scan base-package="aspect"></context:component-scan>
+    <context:component-scan base-package="scheduleTest"></context:component-scan>
 
 
     <bean id="ds" class="org.apache.commons.dbcp.BasicDataSource">
