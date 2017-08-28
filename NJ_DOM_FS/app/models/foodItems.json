@@ -1,0 +1,56 @@
+[
+    {
+        "itemId" : "bde9faac-582c-4536-8d01-b98252618340",
+        "name" : "noodle",
+        "price" : 3.5,
+        "curreny" : "CNY",
+        "producer" : "KSF",
+        "bestBefore" : "20170830",
+        "amount" : 100,
+        "createDatetime" : "2017-08-14T08:06:48.905Z",
+        "updateDatetime" : "2017-08-14T08:06:48.905Z"
+    },
+    {
+        "itemId" : "bde9faac-582c-4536-8d01-b98252618340",
+        "name" : "noodle",
+        "price" : 5,
+        "curreny" : "CNY",
+        "producer" : "TY100",
+        "bestBefore" : "20170830",
+        "amount" : 100,
+        "createDatetime" : "2017-08-14T08:06:48.905Z",
+        "updateDatetime" : "2017-08-14T08:06:48.905Z"
+    },
+    {
+        "itemId" : "bde9faac-582c-4536-8d01-b98252618342",
+        "name" : "hot dog",
+        "price" : 3,
+        "curreny" : "CNY",
+        "producer" : "WJ",
+        "bestBefore" : "20170830",
+        "amount" : 100,
+        "createDatetime" : "2017-08-14T08:06:48.905Z",
+        "updateDatetime" : "2017-08-14T08:06:48.905Z"
+    },
+    {
+        "itemId" : "bde9faac-582c-4536-8d01-b98252618343",
+        "name" : "watermelon",
+        "price" : 10,
+        "curreny" : "CNY",
+        "producer" : "HYD",
+        "bestBefore" : "20170830",
+        "amount" : 100,
+        "createDatetime" : "2017-08-14T08:06:48.905Z",
+        "updateDatetime" : "2017-08-14T08:06:48.905Z"
+    },
+    {
+        "itemId" : "bde9faac-582c-4536-8d01-b98252618342",
+        "name" : "apple",
+        "price" : 22,
+        "producer" : "Apple",
+        "bestBefore" : "20170830",
+        "amount" : 100,
+        "createDatetime" : "2017-08-14T08:06:48.905Z",
+        "updateDatetime" : "2017-08-14T08:06:48.905Z"
+    }
+] 

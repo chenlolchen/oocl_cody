@@ -1,0 +1,91 @@
+[
+    {
+        "userInfoId" : "110ec58a-a0f2-4ac4-8393-c866d813b8d1",
+        "userId" : "littleNick",
+        "userName" : "Nick Liu",
+        "password" : "81dc9bdb52d04dc20036dbd8313ed055",
+        "role" : "Customer",
+        "roleLevel" : 1,
+        "createDatetime" : "2017-08-14T08:06:48.905Z",
+        "updateDatetime" : "2017-08-14T08:06:48.905Z",
+        "isSupport" : false
+    }, 
+    {
+        "userInfoId" : "110ec58a-a0f2-4ac4-8393-c866d813b8d2",
+        "userId" : "littleDick",
+        "userName" : "Dick Liu",
+        "password" : "81dc9bdb52d04dc20036dbd8313ed055",
+        "role" : "Customer",
+        "roleLevel" : 1,
+        "createDatetime" : "2017-08-14T08:06:48.905Z",
+        "updateDatetime" : "2017-08-14T08:06:48.905Z",
+        "isSupport" : false
+    }, 
+    {
+        "userInfoId" : "110ec58a-a0f2-4ac4-8393-c866d813b8d3",
+        "userId" : "littleJason",
+        "userName" : "Jason Liu",
+        "password" : "81dc9bdb52d04dc20036dbd8313ed055",
+        "role" : "Customer",
+        "roleLevel" : 1,
+        "createDatetime" : "2017-08-14T08:06:48.905Z",
+        "updateDatetime" : "2017-08-14T08:06:48.905Z",
+        "isSupport" : false
+    }, 
+    {
+        "userInfoId" : "110ec58a-a0f2-4ac4-8393-c866d813b8d4",
+        "userId" : "littleAlfred",
+        "userName" : "Alfred Liu",
+        "password" : "81dc9bdb52d04dc20036dbd8313ed055",
+        "role" : "Admin",
+        "roleLevel" : 666,
+        "createDatetime" : "2017-08-14T08:06:48.905Z",
+        "updateDatetime" : "2017-08-14T08:06:48.905Z",
+        "isSupport" : true
+    }, 
+    {
+        "userInfoId" : "110ec58a-a0f2-4ac4-8393-c866d813b8d5",
+        "userId" : "littleNickon",
+        "userName" : "Nickon Liu",
+        "password" : "81dc9bdb52d04dc20036dbd8313ed055",
+        "role" : "Customer",
+        "roleLevel" : 1,
+        "createDatetime" : "2017-08-14T08:06:48.905Z",
+        "updateDatetime" : "2017-08-14T08:06:48.905Z",
+        "isSupport" : false
+    }, 
+    {
+        "userInfoId" : "110ec58a-a0f2-4ac4-8393-c866d813b8d6",
+        "userId" : "littleCannon",
+        "userName" : "Cannon Liu",
+        "password" : "81dc9bdb52d04dc20036dbd8313ed055",
+        "role" : "Customer",
+        "roleLevel" : 1,
+        "createDatetime" : "2017-08-14T08:06:48.905Z",
+        "updateDatetime" : "2017-08-14T08:06:48.905Z",
+        "isSupport" : false
+    }, 
+    {
+        "userInfoId" : "110ec58a-a0f2-4ac4-8393-c866d813b8d7",
+        "userId" : "littleThomas",
+        "userName" : "Thomas Liu",
+        "password" : "81dc9bdb52d04dc20036dbd8313ed055",
+        "role" : "Customer",
+        "roleLevel" : 1,
+        "createDatetime" : "2017-08-14T08:06:48.905Z",
+        "updateDatetime" : "2017-08-14T08:06:48.905Z",
+        "isSupport" : false
+
+    }, 
+    {
+        "userInfoId" : "110ec58a-a0f2-4ac4-8393-c866d813b8d8",
+        "userId" : "littlePeter",
+        "userName" : "Peter Liu",
+        "password" : "81dc9bdb52d04dc20036dbd8313ed055",
+        "role" : "Support",
+        "roleLevel" : 333,
+        "createDatetime" : "2017-08-14T08:06:48.905Z",
+        "updateDatetime" : "2017-08-14T08:06:48.905Z",
+        "isSupport" : true
+    }
+]

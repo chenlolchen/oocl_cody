@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+
+</head>
+<body>
+<button id="test">test</button>
+<textarea rows="10" cols="50" id="info"></textarea>
+<script type="text/javascript">
+    var ws=new WebSocket("ws://localhost:8080/websocket_base/ws1");
+    ws.onmessage=function(event){
+        var ta=document.getElementById("info");
+        var d=document.createTextNode(event.data);
+        ta.appendChild(d);
+    };
+    var testBtn=document.getElementById("test");
+    testBtn.onclick=function(){
+        ws.send("I am John....");
+    }
+</script>
+</body>
+</html>
