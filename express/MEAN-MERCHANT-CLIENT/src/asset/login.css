@@ -1,0 +1,6 @@
+.top-alert{
+  z-index: 1000000;
+  position:absolute;
+  left: 50%;
+  margin-left: -490px;
+}

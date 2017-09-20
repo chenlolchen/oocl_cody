@@ -1,0 +1,52 @@
+.top-box {
+    text-align: center;
+    margin-top: 5px;
+}
+.excavator-filter-name {
+    position: absolute;
+    color: #999;
+    margin-left: -450px;
+}
+
+.excavator-filter {
+    line-height: 26px;
+    background-color: #fff;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+}
+
+.excavator-filter-items {
+    margin-left: -365px;
+}
+
+.excavator-filter-item {
+    margin-left: 30px;
+}
+
+.excavator-filter-item1 {
+    margin-left: 265px;
+}
+/*.col_1_of_3 {
+    margin: 0% 0 0% 0%;
+}*/
+#m_foodList {
+    margin: 1% 0 1% 2.6%;
+    width: 20.8%;
+}
+
+.span_2_of_3 {
+    width: 100%;
+}
+
+.span_2_of_3 .top-box img{
+    height: 130px;
+}
+
+.shopmenu-food-price {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.color-stress {
+    color: #f74342;
+}

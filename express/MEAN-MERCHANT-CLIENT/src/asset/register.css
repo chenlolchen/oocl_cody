@@ -1,0 +1,57 @@
+.register-body{
+    background: url('image/food-background.jpg');
+    background-repeat: no-repeat;
+    /*height: 100%!important;*/
+    /*background-size:100% !important;*/
+    /*height:100%;*/
+    /*width:100%;*/
+    opacity:0.6;
+    overflow: hidden;
+    background-size:cover!important;
+
+}
+#register-body{
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}
+.register-form-body{
+    background-color: white;
+    border-radius:5px;
+    padding-bottom: 20px;
+}
+
+.register-title{
+    margin-bottom: 20px;
+    text-align: center;
+}
+.register-div{
+    margin-top: 200px;
+}
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+.second-file{
+    margin-top: 16px;
+}
+.hiden-file{
+    display: none !important;
+}

@@ -1,0 +1,92 @@
+<!--&lt;!&ndash; Header Area &ndash;&gt;-->
+<!--<navbar></navbar>-->
+<div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+    <div class="row manager-title">
+        <div class="col-lg-3 col-md-3 col-lg-offset-4 col-md-offset-4"><h3>Food Manager</h3></div>
+    </div>
+<!--modal-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Food Detail</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="modal_form" name="modal_form" novalidate>
+                        <div class="form-group">
+                            <label>Food Name</label>
+                            <input placeholder="填入食物名称" type="text" class="form-control"  ng-model="vm.currentFood.name" name="foodName" required>
+                             <span style="color:red" ng-show="modal_form.foodName.$dirty">
+                             <span ng-show="modal_form.foodName.$error.required">食物名不能为空</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Food Price</label>
+                            <input  placeholder="填入食物价格" type="number" class="form-control"  ng-model="vm.currentFood.price" name="foodPrice"  required>
+                            <span style="color:red" ng-show="modal_form.foodPrice.$dirty">
+                            <span ng-show="modal_form.foodPrice.$error.required">食物价格不能为空</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Food Type</label>
+                            <select class="form-control" name="categoryId" id="modal_c_select" ng-model="vm.currentFood.categories" name="foodCat">
+                                <option ng-repeat="x in vm.categories" ng-if="x!='ALL'" value="{{x}}">{{x}}</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+
+                            <label class="input-group-btn">
+                                <span class="btn btn-primary">
+                                    Browse <i class="fa fa-folder-open" aria-hidden="true"></i> <input type="file" class="hiden-file"  ngf-select="true"  ng-model="vm.currentFood.image" name="foodImage" required>
+                                </span>
+                              </label>
+                              <input id="avator" class="form-control" readonly="">
+                        </div>
+                </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="addButton"  data-dismiss="modal" ng-click="vm.addFood()" ng-disabled="modal_form.foodName.$error.required||modal_form.foodPrice.$error.required||modal_form.Image.$error.required" >Add</button>
+                    <button type="button" class="btn btn-primary" id="editButton"  data-dismiss="modal" ng-click="vm.editFood()" ng-disabled="modal_form.foodName.$error.required||modal_form.foodPrice.$error.required">Edit</button>
+                    <!--ng-disabled="modal_form.foodName.$dirty||modal_form.foodPrice.$dirty"-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <div class="operationarea">
+    <div id="food-type-choose-nav">
+      <ul id="category-list" class="nav nav-pills">
+        <div>
+        <li><input class="btn btn-default" type="button" ng-repeat="x in vm.categories" ng-click="vm.findByCategories({x})" value="{{x}}"/></li>
+        <li><input class="btn btn-primary" type="button" value="Add" data-toggle='modal' data-target='#myModal' ng-click="vm.addOper()"></li>
+        </div>
+      </ul>
+    </div>
+    <div id="show-food-area">
+      <table class="table table-bordered table-hover" id="history_table">
+          <thead>
+            <tr>
+              <th>image</th>
+              <th>name</th>
+              <th>categories</th>
+              <th>price</th>
+              <th>operation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="food in vm.foods">
+              <td><img class="info-img" ng-src="{{food.image}}" /> </td>
+              <th>{{::food.name}}</th>
+              <th>{{::food.categories}}</th>
+              <th>{{::food.price}}</th>
+              <th>
+                <a href='javascript:void(0);' class='btn btn-danger' role='button' ng-click="vm.deleteFood(food._id)"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+                <a class='btn btn-info ' role='button' data-toggle='modal' data-target='#myModal' ng-click="vm.editOper({food})"><i class="fa fa-info-circle" aria-hidden="true"></i> Detail</a>
+              </th>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>

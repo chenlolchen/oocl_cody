@@ -1,0 +1,22 @@
+#orderDetailPage .orderProcessNumber {
+    font-size: 15px;
+    font-weight: bold;
+    margin-right: 4px;
+}
+
+#orderDetailPage .orderStatus {
+    font-size: 15px;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+#orderDetailPage .item_header{
+    background-color: #4cb1ca;
+    border-color:#4cb1ca;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#orderDetailPage table tr th{
+    text-align: center;
+}

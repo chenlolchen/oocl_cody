@@ -1,0 +1,18 @@
+<section id="register">
+    <div class="div-main">
+        <div class="login-span">
+        </div>
+        <div ng-controller="registerController as vm">
+            <input ng-model="vm.username" name="name" class="input-margin login-text" placeholder="Username">
+            <input type="password" ng-model="vm.password" name="password" class=" input-margin login-text"
+                   placeholder="Password">
+            <div>
+            <span id="hidden-file" class="file-a input-margin">
+                <span id="avatar_name">avatar</span>
+                <input name="avatarPic" id="avatarPic" ngf-select="true" type="file" ng-model="vm.avatarFile" class="image-file">
+            </span>
+            </div>
+            <button class="btn-login" type="button" ng-click="vm.uploadFile(vm.avatarFile)">注册</button>
+        </div>
+    </div>
+</section>

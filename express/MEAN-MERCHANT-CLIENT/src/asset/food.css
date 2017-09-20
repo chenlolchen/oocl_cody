@@ -1,0 +1,22 @@
+#category-list div{
+    text-align: center;
+}
+
+
+#category-list div li input{
+    margin:20px 20px;
+    padding: 10px 20px;
+}
+
+#category-list div li input:first-child{
+    font-weight: bold
+} 
+
+#category-list div li{
+     list-style-type:none;  
+    display:inline;  
+}
+
+h3{
+    text-align: center
+}

@@ -1,0 +1,46 @@
+
+<div class="container top-alert">
+    <div class="col-lg-5 col-md-5 col-lg-offset-3 col-md-offset-3">
+        <div class="alert alert-warning " id="alter-div" hidden>
+
+            <strong>warning!</strong>{{vm.error.message}}
+        </div>
+    </div>
+</div>
+
+
+
+<div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+
+    <div class="row manager-title">
+        <div class="col-lg-3 col-md-3 col-lg-offset-4 col-md-offset-4"><h3>User Info</h3></div>
+    </div>
+
+    <div>
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr class="">
+                <th>name</th>
+                <th>address</th>
+                <th>idCard</th>
+                <th>avator</th>
+                <th>status</th>
+                <th>opreator</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{vm.merchant.name}}</td>
+                <td>{{vm.merchant.address}}</td>
+                <td><img class="info-img" src="{{vm.merchant.idCard}}"/></td>
+                <td><img class="info-img" src="{{vm.merchant.avator}}"/></td>
+                <td>{{vm.merchant.mStatus}}<br>
+                    <div class="alert-danger reject-div" ng-if="vm.merchant.mStatus=='reject'"> <strong>reason:</strong><br>{{vm.merchant.rejectReason}}</div>
+                </td>
+                <td><a ui-sref="reRegister" class="btn btn-primary" ng-if="vm.merchant.mStatus=='audit'||vm.merchant.mStatus=='reject'">reRegister</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

@@ -1,0 +1,18 @@
+#nav a {
+    /*float: right;
+    color: #96e8fc;*/
+    font-size: 1.5em;
+}
+
+#nav #home {
+    color: #fff;
+}
+
+#nav #order {
+    margin-left: 20px;
+    color: #fff;
+}
+
+#nav .header-top-left li {
+    padding: 8px 0px 8px;
+}

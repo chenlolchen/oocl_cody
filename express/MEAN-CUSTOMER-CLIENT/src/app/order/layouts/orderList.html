@@ -1,0 +1,45 @@
+<section id="orderPage" ng-controller="orderListController as vm">
+    <div class="container" style="margin-top: 100px">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>订单号</th>
+                    <th>创建时间</th>
+                    <th>总价</th>
+                    <th>商家名称</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="order in vm.orderList">
+                <td>{{order.processNumber}}</td>
+                <td>{{order.createDate | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+                <td>{{order.amount}}</td>
+                <td>{{order.merchant.name}}</td>
+                <td>{{order.status}}{{order._id}}</td>
+                <td><button ng-click="vm.showOrderDetail(order._id)" class="btn btn-default" style="background-color: #4cb1ca; border-color: #4cb1ca; color: #fff;">查看详情</button></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal" id="orderMessageDialog" tabindex="-1" role="dialog" aria-labelledby="orderMessageLabel" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width: 350px">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="orderMessageLabel">提示</h4>
+                </div>
+                <div class="modal-body" style="padding: 45px">
+                    <span style="font-size: 18px">您还没登录, 请登录后再操作！</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" ng-click="vm.gotoLogin()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

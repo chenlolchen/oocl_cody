@@ -1,0 +1,162 @@
+<section ng-controller="foodListController as vm" id="foods">
+    <div>
+        <div class="main">
+            <div class="div-cart-icon">
+                <button type="button" ng-click="vm.cartClick()" class="btn btn-success show-carticon-btn"
+                        aria-label="Left Align">
+                    <span class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></span>
+                    <span class="point"></span>
+                </button>
+            </div>
+            <div id="cart-body">
+                <span id="cart-body-top" style="color: #ffffff">购物车</span>
+                <div id="cart">
+
+                    <!--<c:forEach items="${sessionScope.orderList}" var="order">-->
+                    <ul ng-show="vm.orderMessage" class="list-ul" ng-repeat="orderItem in vm.orderItemList">
+                        <li class="food_name">{{orderItem.name}}</li>
+                        <li>{{orderItem.price}}</li>
+                        <li>
+                            <button class="btn btn-default btn-xs" ng-click='vm.del(orderItem._id)'>-</button>
+                            <span>{{orderItem.amount}}</span>
+                            <button class="btn btn-default btn-xs" ng-click='vm.up(orderItem._id)'>+</button>
+                        </li>
+                    </ul>
+                    <!--</c:forEach>-->
+                </div>
+                <div id="sum" style="line-height: 40px">总计：{{vm.totalPrice}}</div>
+                <button type="button" class="btn btn-success take_order_btn" ng-click="vm.takeOrder()">结算</button>
+            </div>
+
+            <!--&lt;!&ndash; start slider &ndash;&gt;-->
+            <!--<div id="fwslider">-->
+                <!--<div class="slider_container">-->
+                    <!--<div class="slide">-->
+                        <!--&lt;!&ndash; Slide image &ndash;&gt;-->
+                        <!--<img src="../../../assets/img/slider-ads/slider_1.jpg" alt=""/>-->
+                        <!--&lt;!&ndash; /Slide image &ndash;&gt;-->
+                        <!--&lt;!&ndash; Texts container &ndash;&gt;-->
+                        <!--<div class="slide_content">-->
+                            <!--<div class="slide_content_wrap">-->
+                                <!--&lt;!&ndash; Text title &ndash;&gt;-->
+                                <!--<h4 class="title">Dorayaki</h4>-->
+                                <!--&lt;!&ndash; /Text title &ndash;&gt;-->
+
+                                <!--&lt;!&ndash; Text description &ndash;&gt;-->
+                                <!--<p class="description">Sweet You Heart</p>-->
+                                <!--&lt;!&ndash; /Text description &ndash;&gt;-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash; /Texts container &ndash;&gt;-->
+                    <!--</div>-->
+
+                    <!--&lt;!&ndash; /Duplicate to create more slides &ndash;&gt;-->
+                    <!--<div class="slide">-->
+                        <!--<img src="../../../assets/img/slider-ads/slider_2.jpg" alt=""/>-->
+                        <!--<div class="slide_content">-->
+                            <!--<div class="slide_content_wrap">-->
+                                <!--<h4 class="title">Pizza</h4>-->
+                                <!--<p class="description">Pizza King</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="timers"></div>-->
+                <!--<div class="slidePrev"><span></span></div>-->
+                <!--<div class="slideNext"><span></span></div>-->
+            <!--</div>-->
+
+            <div class="wrap">
+                <div class="section group">
+                    <!--<img ng-src="{{ vm.foodList[0].image }}"/>-->
+                    <div class="cont span_2_of_3">
+                        <h2 class="head">{{ vm.foodList[0].merchant.name }}</h2>
+                        <div class="top-box">
+                            <!--食物分类-->
+                            <div class="excavator-filter">
+                                <span class="excavator-filter-name">食品分类：</span>
+                                <div class="excavator-filter-items">
+                                    <button class='btn btn-info btn-sm excavator-filter-item1' ng-click="vm.findFoodListByFoodType(vm.merchantId, 'ALL')">ALL</button>
+                                    <button class='btn btn-info btn-sm excavator-filter-item' ng-click="vm.findFoodListByFoodType(vm.merchantId, '酒水')">酒水</button>
+                                    <button class='btn btn-info btn-sm excavator-filter-item' ng-click="vm.findFoodListByFoodType(vm.merchantId, '小吃')">小吃</button>
+                                    <button class='btn btn-info btn-sm excavator-filter-item' ng-click="vm.findFoodListByFoodType(vm.merchantId, '主食')">主食</button>
+                                    <button class='btn btn-info btn-sm excavator-filter-item' ng-click="vm.findFoodListByFoodType(vm.merchantId, '套餐')">套餐</button>
+                                </div>
+                            </div>
+
+                            <div class="wrap">
+                                <div class="section group">
+                                    <div class="cont span_2_of_3">
+                                        <div class="top-box">
+                                            <div class="col_1_of_3 span_1_of_3" ng-repeat="food in vm.foodList" id="m_foodList">
+
+                                                <div class="inner_content clearfix">
+                                                    <div class="product_image">
+                                                        <img ng-src="http://zha-ita077-w7/merchant/{{food.image}}" alt=""/>
+                                                    </div>
+                                                    <div class="sale-box"><span class="on_sale title_shop">{{food.categories}}</span></div>
+                                                    <div class="price">
+                                                        <div class="cart-left">
+                                                            <p class="title">{{food.name}}</p>
+                                                            <div class="price1">
+                                                                <!--<span class="actual">{{food.price}}</span>-->
+                                                                <span class="col-3 shopmenu-food-price color-stress ng-binding">￥{{food.price}}<small class="ng-binding"></small></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--<div class="cart-right"> </div>-->
+                                                        <button class="cart-right" ng-click="vm.addToShopCar(food._id)"></button>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <!--<div class="rsidebar span_1_of_left">
+                        <div class="top-border"> </div>
+                         <div class="border">
+                         <link href="../../../assets/css/default.css" rel="stylesheet" type="text/css" media="all" />
+                         <link href="../../../assets/css/nivo-slider.css" rel="stylesheet" type="text/css" media="all" />
+                          <script src="../../../assets/js/jquery.nivo.slider.js"></script>
+                            <script type="text/javascript">
+                            $(window).load(function() {
+                                $('#slider').nivoSlider();
+                            });
+                            </script>
+                    <div class="slider-wrapper theme-default">
+                      <div id="slider" class="nivoSlider">
+                        <img src="../../../assets/img/sliderAds/t-img1.jpg"  alt="" />
+                           <img src="../../../assets/img/sliderAds/t-img2.jpg"  alt="" />
+                        <img src="../../../assets/img/sliderAds/t-img3.jpg"  alt="" />
+                      </div>
+                     </div>
+                      <div class="btn"><a href="#">Check it Out</a></div>
+                     </div>
+                </div>-->
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="messageDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="z-index: 9999">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width: 350px">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">提示</h4>
+                    </div>
+                    <div class="modal-body" style="padding: 45px">
+                        <span style="font-size: 18px">您还没登录, 请登录后再操作！</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" ng-click="vm.gotoLogin()">确定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

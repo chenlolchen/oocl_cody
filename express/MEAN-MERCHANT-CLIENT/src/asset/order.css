@@ -1,0 +1,14 @@
+.order-item-idv{
+    /*margin-top: 0px!important;*/
+    margin-bottom: 0%;
+}
+table th,table td{text-align: center;vertical-align: middle!important; }
+.manager-title{
+    margin-bottom: 20px;
+}
+.order-operator-btn{
+    /*margin-left: px!important;*/
+}
+.order-status-div{
+    margin-bottom: 10px;
+}

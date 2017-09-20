@@ -1,0 +1,26 @@
+nav {
+    /*border-top: -1px;*/
+    background-color: rgb(26,188,156)!important;
+    border-color:rgb(26,188,156) !important;
+    /*background-color: #269abc !important;*/
+    /*border-color:#1b6d85 !important;*/
+}
+nav button{
+    /*border-top: -1px;*/
+    background-color: rgb(26,188,156)!important;
+    border-color:rgb(26,188,156) !important;
+    /*background-color: #269abc !important;*/
+    /*border-color:#1b6d85 !important;*/
+}
+
+nav * {
+    color: white !important;
+    font-size: 18px;
+}
+.user-button{
+    margin-top: 6px;
+    font-size: 18px;
+}
+.user-list *{
+    color: black !important;
+}

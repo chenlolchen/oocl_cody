@@ -1,0 +1,12 @@
+{
+  "name": "pure-angularjs-project",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.15.3",
+    "webpack": "^3.5.5"
+  }
+}

@@ -1,0 +1,19 @@
+/* Import Global Styles Here like vendor */
+/* Bootstrap css bundled reset.css so that no use to import it once more */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+/*@import "~flat-ui/css/flat-ui.css";*/
+@import "~font-awesome/css/font-awesome.css";
+
+
+@import "asset/login.css";
+@import "asset/register.css";
+@import "asset/nav.css";
+@import "asset/info.css";
+@import "asset/order.css";
+@import "asset/food.css";
+
+
+@import "~sweetalert/dist/sweetalert.css";
+
+

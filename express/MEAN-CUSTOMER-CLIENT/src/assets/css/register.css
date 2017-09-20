@@ -1,0 +1,75 @@
+#register .body {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#register .div-main {
+    width: 300px;
+    height: 296px;
+    margin-left: 40%;
+    margin-top: 10%;
+    margin-bottom: 200px;
+}
+
+#register .login-span {
+    width: 300px;
+    height: 100px;
+    margin-bottom: 20px;
+    background-image: url("../img/login.jpg");
+}
+
+#register .login-text {
+    width: 100%;
+    height: 50px;
+}
+
+#register #clear {
+    clear: both;
+}
+
+#register .div-login {
+    margin-top: 12px;
+    margin-left: auto;
+}
+
+#register .input-margin {
+    margin-top: 17px;
+}
+
+#register .error-span {
+    height: 20px;
+    font-size: 14px;
+    color: red;
+    vertical-align: middle;
+    margin-top: 10px;
+}
+
+#register .btn-login {
+    margin-top: 20px;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    background: #00d762;
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    font-family: monospace;
+}
+
+#register .file-a {
+    display: block;
+    text-align: left;
+    vertical-align: middle;
+    color: grey;
+    border: 1px solid grey;
+    height: 50px;
+    line-height: 50px;
+    text-decoration: none;
+}
+
+#register .image-file {
+    opacity: 0;
+    position: relative;
+    left: 0;
+    top: -50px;
+}

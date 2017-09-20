@@ -1,0 +1,29 @@
+function navMenuService() {
+  var svc = this;
+
+  svc.menus = [
+    {
+      state: 'home',
+      displayName: 'Home'
+    },
+    {
+      state: 'about',
+      displayName: 'About'
+    }
+  ];
+
+  function addMenu(menu) {
+    svc.menus.push(menu);
+  }
+
+  function getMenus() {
+    return svc.menus;
+  }
+
+  return {
+    getMenus: getMenus,
+    addMenu: addMenu
+  };
+}
+
+module.exports = navMenuService;

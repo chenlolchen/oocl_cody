@@ -1,0 +1,52 @@
+/*#merchants-area th{
+    text-align: center;
+}
+
+#merchants-area {
+    margin-top: 5px; 
+    border-top: 1px solid #999;
+}*/
+
+.container {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.excavator-filter-name {
+    position: absolute;
+    color: #999;
+    margin-left: -450px;
+}
+
+.excavator-filter {
+    line-height: 26px;
+    background-color: #fff;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+}
+
+.excavator-filter-items {
+    margin-left: -600px;
+}
+
+.excavator-filter-item {
+    margin-left: 30px;
+}
+
+.merchants-area {
+    margin: 0 auto;
+}
+
+.col_1_of_3 {
+     margin: 0% 0 0% 0%; 
+}
+
+.span_2_of_3 {
+    width: 100%;
+}
+
+.container img{
+    height: 130px;
+}
+
+

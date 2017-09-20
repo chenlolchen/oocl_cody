@@ -1,0 +1,39 @@
+{
+  "name": "backend-client",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "chai": "^4.1.2",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.9"
+  },
+  "devDependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.7",
+    "glob": "^7.1.2",
+    "lodash": "^4.17.4",
+    "morgan": "^1.8.2",
+    "path": "^0.12.7",
+    "serve-favicon": "^2.4.3",
+    "uuid": "^3.1.0",
+    "winston": "^2.3.1",
+    "gulp": "^3.8.7",
+    "gulp-jshint": "^1.8.4",
+    "gulp-livereload": "^2.1.1",
+    "gulp-nodemon": "^1.0.4",
+    "gulp-watch": "^0.6.9",
+    "redis": "^2.8.0",
+    "express-jwt": "^5.3.0",
+    "jsonwebtoken": "^7.4.3",
+    "shortid": "^2.2.8",
+    "connect-multiparty": "^2.0.0",
+    "querystring": "^0.2.0",
+    "form-data": "^2.3.1",
+    "restler": "^3.4.0",
+    "socket.io": "^2.0.3"
+  }
+}

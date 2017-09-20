@@ -1,0 +1,16 @@
+{
+    "NJ_DOM_FS": {
+        "title": "Admin Server",
+        "port": 5002,
+        "context": "/api"
+    },
+    "mongodb": {
+        "uri": "mongodb://zha-ita077-w7:27017/ACM",
+        "options": {
+            "user": "",
+            "pass": ""
+        },
+        "debug": true
+    },
+    "secret": "admin-secret"
+}

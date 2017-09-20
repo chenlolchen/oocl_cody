@@ -1,0 +1,13 @@
+<section ng-controller="loginController as vm" id="login">
+  <div class="div-main">
+    <div class="login-span"></div>
+    <div>
+      <input type="text" name="name" ng-model="vm.name" class=" login-text" placeholder="Account" aria-describedby="sizing-addon2">
+      <input type="password" name="password" ng-model="vm.password" class=" input-margin login-text" placeholder="Password" aria-describedby="sizing-addon2">
+      <div style="color: red">{{vm.message}}</div>
+      <button class="btn btn-primary btn-login" ng-click="vm.login()">Login</button>
+      <button class="btn btn-primary btn-register" ui-sref="register">Register</button>
+      <!--<button class="btn btn-primary btn-register" ng-click="vm.test()">测试</button>-->
+    </div>
+  </div>
+</section>

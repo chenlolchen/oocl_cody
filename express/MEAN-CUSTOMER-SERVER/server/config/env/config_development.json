@@ -1,0 +1,20 @@
+{
+  "NJ_DOM_FS": {
+    "title": "Client Server",
+    "port": 3001,
+    "context": "/api"
+  },
+  "mongodb": {
+    "uri": "mongodb://zha-ita077-w7:27017/ACM",
+    "options": {
+      "user": "",
+      "pass": ""
+    },
+    "debug": true
+  },
+  "fileUpload": {
+    "readPath": "http://zha-ita077-w7/",
+    "uploadPath": "http://zha-ita077-w7:8282/image/"
+  },
+  "secret" : "client-secret"
+}
