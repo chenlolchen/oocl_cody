@@ -16,9 +16,11 @@
     "express": "^4.15.4",
     "glob": "^7.1.2",
     "lodash": "^4.17.4",
+    "mongoose": "^4.11.9",
     "morgan": "^1.8.2",
     "path": "^0.12.7",
     "serve-favicon": "^2.4.3",
+    "uuid": "^3.1.0",
     "winston": "^2.3.1"
   }
 }

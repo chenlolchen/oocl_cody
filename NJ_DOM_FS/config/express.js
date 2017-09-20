@@ -27,6 +27,10 @@ config.getGlobbedFiles('./app/routes/**/*.js').forEach(function(routePath) {
 });
 app.use(envConfig.NJ_DOM_FS.context, router);
 
+router.get('/', function(req, res, next) {
+    res.render('./index');
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   const err = new Error('Not Found');

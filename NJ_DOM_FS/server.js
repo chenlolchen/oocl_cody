@@ -3,6 +3,23 @@ const config = require('./config/env/config_development.json');
 const http = require('http');
 const winston = require('winston');
 let server = http.createServer(app);
+var mongoose = require('mongoose');
+
+// Bootstrap db connection
+if (config.mongodb.debug) {
+	mongoose.set('debug', true);
+}
+
+var db = mongoose.connect(config.mongodb.uri, config.mongodb.options, function (err) {
+	if (err) {
+		console.error('Could not connect to MongoDB!');
+		console.error(err);
+		process.exit(-1);
+	}
+	else {
+		console.log('Connected to MongoDB!');
+	}
+});
 
 server.listen(config.NJ_DOM_FS.port);
 
